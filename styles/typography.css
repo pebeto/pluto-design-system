@@ -1,0 +1,310 @@
+/* =====================================================================
+ * Pluto Design — Typography
+ *
+ * Element-level type styling. Headings use Vollkorn, body uses Alegreya
+ * Sans, code uses JuliaMono. The h1/h2 underline is the signature
+ * Pluto move — it carries the framework's identity.
+ * ===================================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--pluto-font-serif);
+    font-feature-settings: "lnum", "pnum";
+    font-weight: var(--pluto-fw-semibold);
+    color: var(--pluto-text-strong);
+    margin-block-start: var(--pluto-space-3);
+    margin-block-end: 0;
+    line-height: var(--pluto-line-height-tight);
+}
+
+h1,
+h2 {
+    font-weight: var(--pluto-fw-bold);
+    margin-block-start: var(--pluto-space-4);
+}
+
+h1 {
+    font-size: var(--pluto-fs-5xl);
+    border-bottom: var(--pluto-bw-3) solid var(--pluto-border);
+    padding-block-end: 0.2em;
+    margin-block-end: var(--pluto-space-2);
+}
+
+h2 {
+    font-size: var(--pluto-fs-4xl);
+    border-bottom: var(--pluto-bw-2) dotted var(--pluto-border);
+    padding-block-end: 0.2em;
+    margin-block-end: var(--pluto-space-2);
+}
+
+h1:empty,
+h2:empty {
+    border-bottom: none;
+}
+
+h3 {
+    font-size: var(--pluto-fs-3xl);
+}
+h4 {
+    font-size: var(--pluto-fs-2xl);
+}
+h5 {
+    font-size: var(--pluto-fs-xl);
+}
+h6 {
+    font-size: var(--pluto-fs-lg);
+}
+
+/* Display sizes (bigger than h1 — for hero / landing pages).
+   Use clamp() so they shrink on phones without an extra media query:
+   clamp(min, fluid, max). The fluid term scales with viewport width. */
+.display-1 {
+    font-family: var(--pluto-font-serif);
+    font-size: clamp(2.5rem, 5vw + 1.5rem, 4.5rem);
+    font-weight: var(--pluto-fw-bold);
+    line-height: 1.1;
+    border: none;
+}
+.display-2 {
+    font-family: var(--pluto-font-serif);
+    font-size: clamp(2.25rem, 4vw + 1.25rem, 3.75rem);
+    font-weight: var(--pluto-fw-bold);
+    line-height: 1.1;
+    border: none;
+}
+.display-3 {
+    font-family: var(--pluto-font-serif);
+    font-size: clamp(2rem, 3vw + 1rem, 3rem);
+    font-weight: var(--pluto-fw-bold);
+    line-height: 1.1;
+    border: none;
+}
+
+/* Lead paragraph */
+.lead {
+    font-size: var(--pluto-fs-xl);
+    font-weight: var(--pluto-fw-regular);
+    line-height: 1.5;
+    color: var(--pluto-text-muted);
+}
+
+/* Paragraphs / inline */
+p {
+    margin-block-start: 0;
+    margin-block-end: var(--pluto-space-cell);
+    word-spacing: 0.053em;
+    line-height: var(--pluto-line-height-base);
+}
+
+p:last-child {
+    margin-block-end: 0;
+}
+
+a {
+    color: var(--pluto-link);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: var(--pluto-link-underline);
+    text-underline-offset: 2px;
+    transition: text-decoration-color var(--pluto-transition);
+}
+
+a:hover {
+    text-decoration-color: var(--pluto-link);
+}
+
+a.unstyled {
+    color: inherit;
+    text-decoration: none;
+}
+
+b,
+strong {
+    font-weight: var(--pluto-fw-bold);
+}
+
+small,
+.small {
+    font-size: var(--pluto-fs-sm);
+}
+
+/* Marked / highlighted */
+mark,
+.mark {
+    background-color: var(--pluto-warning-soft);
+    color: var(--pluto-warning-text);
+    padding: 0.05em 0.2em;
+    border-radius: var(--pluto-radius-sm);
+}
+
+/* Horizontal rule */
+hr {
+    border: none;
+    border-top: var(--pluto-bw-2) solid var(--pluto-border);
+    margin: var(--pluto-space-3) 0;
+}
+
+/* Lists */
+ul,
+ol {
+    padding-inline-start: 1.5em;
+    margin-block: var(--pluto-space-2);
+}
+
+li {
+    margin-block: 0.25em;
+    line-height: var(--pluto-line-height-base);
+}
+
+dl {
+    margin-block: var(--pluto-space-2);
+}
+
+dt {
+    font-weight: var(--pluto-fw-semibold);
+    color: var(--pluto-text-strong);
+}
+
+dd {
+    margin-inline-start: var(--pluto-space-3);
+    margin-block-end: var(--pluto-space-2);
+}
+
+/* Blockquote — Pluto's rounded quote box */
+blockquote {
+    margin: var(--pluto-space-3) 0;
+    padding: var(--pluto-space-3);
+    border-radius: var(--pluto-radius-xl);
+    background-color: var(--pluto-bg-soft);
+    color: var(--pluto-text);
+    font-family: var(--pluto-font-serif);
+    font-style: italic;
+}
+
+blockquote > p:last-child {
+    margin-block-end: 0;
+}
+
+blockquote cite {
+    display: block;
+    margin-top: var(--pluto-space-2);
+    font-size: var(--pluto-fs-sm);
+    font-style: normal;
+    color: var(--pluto-text-muted);
+}
+
+blockquote cite::before {
+    content: "— ";
+}
+
+/* Inline code */
+code,
+kbd,
+samp {
+    font-family: var(--pluto-font-mono);
+    font-size: 0.9em;
+    font-variant-ligatures: none;
+}
+
+:not(pre) > code {
+    padding: 0.18em 0.35em;
+    border-radius: var(--pluto-radius-md);
+    background-color: var(--pluto-code-bg);
+    color: var(--pluto-code-text);
+    word-wrap: break-word;
+}
+
+/* Block code */
+pre {
+    display: block;
+    margin: 0 0 var(--pluto-space-cell);
+    padding: var(--pluto-space-3);
+    border-radius: var(--pluto-radius-xl);
+    background-color: var(--pluto-bg-soft);
+    color: var(--pluto-code-text);
+    overflow-x: auto;
+    white-space: pre;
+    tab-size: 4;
+    -moz-tab-size: 4;
+    font-family: var(--pluto-font-mono);
+    font-size: var(--pluto-fs-sm);
+    font-variant-ligatures: none;
+    line-height: 1.5;
+}
+
+pre > code {
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    font-size: inherit;
+    color: inherit;
+    white-space: inherit;
+}
+
+/* Keyboard */
+kbd {
+    display: inline-block;
+    padding: 0.1em 0.4em;
+    border: 1px solid var(--pluto-border);
+    border-radius: var(--pluto-radius-sm);
+    background: var(--pluto-bg);
+    color: var(--pluto-text-strong);
+    font-size: 0.875em;
+    font-weight: var(--pluto-fw-semibold);
+    letter-spacing: -0.7px;
+    box-shadow: 0 1px 0 var(--pluto-border);
+}
+
+/* Disclosure (<details>) */
+details {
+    border: var(--pluto-bw-1) solid var(--pluto-border);
+    border-radius: var(--pluto-radius-sm);
+    padding: var(--pluto-space-2);
+    margin-block-end: var(--pluto-space-cell);
+}
+
+details > summary {
+    cursor: pointer;
+    font-family: var(--pluto-font-ui);
+    font-weight: var(--pluto-fw-bold);
+    padding: var(--pluto-space-2);
+    margin: calc(-1 * var(--pluto-space-2)) calc(-1 * var(--pluto-space-2)) 0;
+    border-radius: var(--pluto-radius-sm);
+    transition:
+        color var(--pluto-transition-slow),
+        background-color var(--pluto-transition-slow);
+}
+
+details > summary:hover {
+    color: var(--pluto-text-strong);
+    background-color: var(--pluto-bg-soft);
+}
+
+details[open] > summary {
+    border-bottom: var(--pluto-bw-1) solid var(--pluto-border);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-bottom: var(--pluto-space-2);
+}
+
+/* Figure */
+figure {
+    margin: var(--pluto-space-3) 0;
+}
+
+figcaption {
+    margin-top: var(--pluto-space-1);
+    font-size: var(--pluto-fs-sm);
+    color: var(--pluto-text-muted);
+    text-align: center;
+}
+
+/* Selection */
+::selection {
+    background-color: var(--pluto-info-soft);
+    color: var(--pluto-text-strong);
+}

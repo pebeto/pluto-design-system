@@ -1,0 +1,435 @@
+/* =====================================================================
+ * Pluto Design — Grid
+ *
+ * 12-column responsive grid. Uses flexbox for the row, and percentage
+ * widths for columns. Bootstrap-shaped API:
+ *
+ *     <div class="container">
+ *         <div class="row">
+ *             <div class="col-12 col-md-6 col-lg-4">…</div>
+ *         </div>
+ *     </div>
+ *
+ * Breakpoints (min-width):
+ *   sm: 576px   md: 768px   lg: 992px   xl: 1200px
+ * ===================================================================== */
+
+/* Containers */
+.container,
+.container-fluid,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl,
+.container-notebook {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: var(--pluto-space-3);
+}
+
+.container-fluid {
+    max-width: none;
+}
+
+.container-notebook {
+    max-width: var(--pluto-container-notebook);
+}
+
+/* By default `.container` grows with the breakpoint. */
+@media (min-width: 576px) {
+    .container,
+    .container-sm {
+        max-width: var(--pluto-container-sm);
+    }
+}
+@media (min-width: 768px) {
+    .container,
+    .container-sm,
+    .container-md {
+        max-width: var(--pluto-container-md);
+    }
+}
+@media (min-width: 992px) {
+    .container,
+    .container-sm,
+    .container-md,
+    .container-lg {
+        max-width: var(--pluto-container-lg);
+    }
+}
+@media (min-width: 1200px) {
+    .container,
+    .container-sm,
+    .container-md,
+    .container-lg,
+    .container-xl {
+        max-width: var(--pluto-container-xl);
+    }
+}
+
+/* Row */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-inline: calc(-0.5 * var(--pluto-grid-gutter));
+}
+
+.row > * {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-inline: calc(0.5 * var(--pluto-grid-gutter));
+}
+
+/* Auto column (grow) */
+.col {
+    flex: 1 0 0%;
+}
+
+/* Auto-sized column */
+.col-auto {
+    flex: 0 0 auto;
+    width: auto;
+}
+
+/* Numeric columns 1–12 */
+.col-1 {
+    flex: 0 0 auto;
+    width: 8.3333%;
+}
+.col-2 {
+    flex: 0 0 auto;
+    width: 16.6667%;
+}
+.col-3 {
+    flex: 0 0 auto;
+    width: 25%;
+}
+.col-4 {
+    flex: 0 0 auto;
+    width: 33.3333%;
+}
+.col-5 {
+    flex: 0 0 auto;
+    width: 41.6667%;
+}
+.col-6 {
+    flex: 0 0 auto;
+    width: 50%;
+}
+.col-7 {
+    flex: 0 0 auto;
+    width: 58.3333%;
+}
+.col-8 {
+    flex: 0 0 auto;
+    width: 66.6667%;
+}
+.col-9 {
+    flex: 0 0 auto;
+    width: 75%;
+}
+.col-10 {
+    flex: 0 0 auto;
+    width: 83.3333%;
+}
+.col-11 {
+    flex: 0 0 auto;
+    width: 91.6667%;
+}
+.col-12 {
+    flex: 0 0 auto;
+    width: 100%;
+}
+
+/* Offset */
+.offset-1 {
+    margin-inline-start: 8.3333%;
+}
+.offset-2 {
+    margin-inline-start: 16.6667%;
+}
+.offset-3 {
+    margin-inline-start: 25%;
+}
+.offset-4 {
+    margin-inline-start: 33.3333%;
+}
+.offset-5 {
+    margin-inline-start: 41.6667%;
+}
+.offset-6 {
+    margin-inline-start: 50%;
+}
+
+/* Responsive variants */
+@media (min-width: 576px) {
+    .col-sm {
+        flex: 1 0 0%;
+    }
+    .col-sm-auto {
+        flex: 0 0 auto;
+        width: auto;
+    }
+    .col-sm-1 {
+        flex: 0 0 auto;
+        width: 8.3333%;
+    }
+    .col-sm-2 {
+        flex: 0 0 auto;
+        width: 16.6667%;
+    }
+    .col-sm-3 {
+        flex: 0 0 auto;
+        width: 25%;
+    }
+    .col-sm-4 {
+        flex: 0 0 auto;
+        width: 33.3333%;
+    }
+    .col-sm-5 {
+        flex: 0 0 auto;
+        width: 41.6667%;
+    }
+    .col-sm-6 {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+    .col-sm-7 {
+        flex: 0 0 auto;
+        width: 58.3333%;
+    }
+    .col-sm-8 {
+        flex: 0 0 auto;
+        width: 66.6667%;
+    }
+    .col-sm-9 {
+        flex: 0 0 auto;
+        width: 75%;
+    }
+    .col-sm-10 {
+        flex: 0 0 auto;
+        width: 83.3333%;
+    }
+    .col-sm-11 {
+        flex: 0 0 auto;
+        width: 91.6667%;
+    }
+    .col-sm-12 {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .col-md {
+        flex: 1 0 0%;
+    }
+    .col-md-auto {
+        flex: 0 0 auto;
+        width: auto;
+    }
+    .col-md-1 {
+        flex: 0 0 auto;
+        width: 8.3333%;
+    }
+    .col-md-2 {
+        flex: 0 0 auto;
+        width: 16.6667%;
+    }
+    .col-md-3 {
+        flex: 0 0 auto;
+        width: 25%;
+    }
+    .col-md-4 {
+        flex: 0 0 auto;
+        width: 33.3333%;
+    }
+    .col-md-5 {
+        flex: 0 0 auto;
+        width: 41.6667%;
+    }
+    .col-md-6 {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+    .col-md-7 {
+        flex: 0 0 auto;
+        width: 58.3333%;
+    }
+    .col-md-8 {
+        flex: 0 0 auto;
+        width: 66.6667%;
+    }
+    .col-md-9 {
+        flex: 0 0 auto;
+        width: 75%;
+    }
+    .col-md-10 {
+        flex: 0 0 auto;
+        width: 83.3333%;
+    }
+    .col-md-11 {
+        flex: 0 0 auto;
+        width: 91.6667%;
+    }
+    .col-md-12 {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-lg {
+        flex: 1 0 0%;
+    }
+    .col-lg-auto {
+        flex: 0 0 auto;
+        width: auto;
+    }
+    .col-lg-1 {
+        flex: 0 0 auto;
+        width: 8.3333%;
+    }
+    .col-lg-2 {
+        flex: 0 0 auto;
+        width: 16.6667%;
+    }
+    .col-lg-3 {
+        flex: 0 0 auto;
+        width: 25%;
+    }
+    .col-lg-4 {
+        flex: 0 0 auto;
+        width: 33.3333%;
+    }
+    .col-lg-5 {
+        flex: 0 0 auto;
+        width: 41.6667%;
+    }
+    .col-lg-6 {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+    .col-lg-7 {
+        flex: 0 0 auto;
+        width: 58.3333%;
+    }
+    .col-lg-8 {
+        flex: 0 0 auto;
+        width: 66.6667%;
+    }
+    .col-lg-9 {
+        flex: 0 0 auto;
+        width: 75%;
+    }
+    .col-lg-10 {
+        flex: 0 0 auto;
+        width: 83.3333%;
+    }
+    .col-lg-11 {
+        flex: 0 0 auto;
+        width: 91.6667%;
+    }
+    .col-lg-12 {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-xl {
+        flex: 1 0 0%;
+    }
+    .col-xl-auto {
+        flex: 0 0 auto;
+        width: auto;
+    }
+    .col-xl-1 {
+        flex: 0 0 auto;
+        width: 8.3333%;
+    }
+    .col-xl-2 {
+        flex: 0 0 auto;
+        width: 16.6667%;
+    }
+    .col-xl-3 {
+        flex: 0 0 auto;
+        width: 25%;
+    }
+    .col-xl-4 {
+        flex: 0 0 auto;
+        width: 33.3333%;
+    }
+    .col-xl-5 {
+        flex: 0 0 auto;
+        width: 41.6667%;
+    }
+    .col-xl-6 {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+    .col-xl-7 {
+        flex: 0 0 auto;
+        width: 58.3333%;
+    }
+    .col-xl-8 {
+        flex: 0 0 auto;
+        width: 66.6667%;
+    }
+    .col-xl-9 {
+        flex: 0 0 auto;
+        width: 75%;
+    }
+    .col-xl-10 {
+        flex: 0 0 auto;
+        width: 83.3333%;
+    }
+    .col-xl-11 {
+        flex: 0 0 auto;
+        width: 91.6667%;
+    }
+    .col-xl-12 {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+}
+
+/* Row gap helpers (Bootstrap-shaped) */
+.gx-0 {
+    --pluto-grid-gutter: 0;
+}
+.gx-1 {
+    --pluto-grid-gutter: var(--pluto-space-1);
+}
+.gx-2 {
+    --pluto-grid-gutter: var(--pluto-space-2);
+}
+.gx-3 {
+    --pluto-grid-gutter: var(--pluto-space-3);
+}
+.gx-4 {
+    --pluto-grid-gutter: var(--pluto-space-4);
+}
+.gx-5 {
+    --pluto-grid-gutter: var(--pluto-space-5);
+}
+
+.gy-0 > * {
+    margin-block-end: 0;
+}
+.gy-1 > * {
+    margin-block-end: var(--pluto-space-1);
+}
+.gy-2 > * {
+    margin-block-end: var(--pluto-space-2);
+}
+.gy-3 > * {
+    margin-block-end: var(--pluto-space-3);
+}
+.gy-4 > * {
+    margin-block-end: var(--pluto-space-4);
+}
+.gy-5 > * {
+    margin-block-end: var(--pluto-space-5);
+}

@@ -1,0 +1,1777 @@
+/* =====================================================================
+ * Pluto Design — Components
+ *
+ * Generic, framework-style components. All class names are unprefixed
+ * (Bootstrap-shaped), so a button is `.btn`, a card is `.card`, an
+ * alert is `.alert`. Variants use the `-variant` suffix:
+ *
+ *     .btn-primary, .btn-success, .btn-warning, .btn-danger,
+ *     .alert-info, .badge-success, …
+ *
+ * Sections in this file:
+ *   1.  Buttons & button-group
+ *   2.  Forms (inputs, selects, checks, switches, validation, input-group)
+ *   3.  Alerts (Pluto's admonition pattern, generalized)
+ *   4.  Badges
+ *   5.  Cards
+ *   6.  Tables
+ *   7.  List groups
+ *   8.  Breadcrumbs
+ *   9.  Pagination
+ *   10. Progress
+ *   11. Spinners
+ *   12. Navbar & Nav
+ *   13. Tabs & Pills
+ *   14. Modal
+ *   15. Tooltip / popover (CSS-only via title attr is hard — we ship a class)
+ *   16. Code cell  (Pluto's signature, opt-in via .code-cell)
+ *   17. Hero / Jumbotron
+ *   18. Pluto logo
+ * ===================================================================== */
+
+/* =====================================================================
+ * 1. BUTTONS
+ * ===================================================================== */
+
+.btn {
+    --btn-bg: var(--pluto-bg);
+    --btn-fg: var(--pluto-text-strong);
+    --btn-border: var(--pluto-border);
+    --btn-hover-bg: var(--pluto-bg-soft);
+    --btn-hover-border: var(--pluto-border-strong);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4ch;
+    padding: 0.5em 1em;
+    margin: 0;
+    font-family: var(--pluto-font-mono-roboto);
+    font-size: var(--pluto-fs-sm);
+    font-weight: var(--pluto-fw-semibold);
+    line-height: 1;
+    letter-spacing: 0.4px;
+    text-decoration: none;
+    color: var(--btn-fg);
+    background-color: var(--btn-bg);
+    border: var(--pluto-bw-2) solid var(--btn-border);
+    border-radius: var(--pluto-radius-sm);
+    cursor: pointer;
+    user-select: none;
+    transition:
+        background-color var(--pluto-transition),
+        border-color var(--pluto-transition),
+        color var(--pluto-transition),
+        transform var(--pluto-transition-fast);
+}
+
+.btn:hover {
+    background-color: var(--btn-hover-bg);
+    border-color: var(--btn-hover-border);
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn:disabled,
+.btn.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Solid variants */
+.btn-primary {
+    --btn-bg: var(--pluto-primary);
+    --btn-fg: var(--pluto-primary-text);
+    --btn-border: var(--pluto-primary);
+    --btn-hover-bg: var(--pluto-primary-strong);
+    --btn-hover-border: var(--pluto-primary-strong);
+}
+.btn-success {
+    --btn-bg: var(--pluto-success);
+    --btn-fg: var(--pluto-success-text);
+    --btn-border: var(--pluto-success);
+    --btn-hover-bg: var(--pluto-success-strong);
+    --btn-hover-border: var(--pluto-success-strong);
+}
+.btn-info {
+    --btn-bg: var(--pluto-info);
+    --btn-fg: var(--pluto-info-text);
+    --btn-border: var(--pluto-info);
+    --btn-hover-bg: var(--pluto-info-strong);
+    --btn-hover-border: var(--pluto-info-strong);
+}
+.btn-warning {
+    --btn-bg: var(--pluto-warning);
+    --btn-fg: var(--pluto-warning-text);
+    --btn-border: var(--pluto-warning);
+    --btn-hover-bg: var(--pluto-warning-strong);
+    --btn-hover-border: var(--pluto-warning-strong);
+}
+.btn-danger {
+    --btn-bg: var(--pluto-danger);
+    --btn-fg: var(--pluto-danger-text);
+    --btn-border: var(--pluto-danger);
+    --btn-hover-bg: var(--pluto-danger-strong);
+    --btn-hover-border: var(--pluto-danger-strong);
+}
+.btn-dark {
+    --btn-bg: var(--pluto-dark);
+    --btn-fg: var(--pluto-dark-text);
+    --btn-border: var(--pluto-dark);
+    --btn-hover-bg: var(--pluto-dark-strong);
+    --btn-hover-border: var(--pluto-dark-strong);
+}
+.btn-light {
+    --btn-bg: var(--pluto-light);
+    --btn-fg: var(--pluto-light-text);
+    --btn-border: var(--pluto-light);
+    --btn-hover-bg: var(--pluto-light-strong);
+    --btn-hover-border: var(--pluto-light-strong);
+}
+
+/* Outline variants */
+.btn-outline-primary {
+    --btn-bg: transparent;
+    --btn-fg: var(--pluto-primary-strong);
+    --btn-border: var(--pluto-primary);
+    --btn-hover-bg: var(--pluto-primary);
+    --btn-hover-border: var(--pluto-primary);
+}
+.btn-outline-primary:hover {
+    color: var(--pluto-primary-text);
+}
+.btn-outline-success {
+    --btn-bg: transparent;
+    --btn-fg: var(--pluto-success-strong);
+    --btn-border: var(--pluto-success);
+    --btn-hover-bg: var(--pluto-success);
+    --btn-hover-border: var(--pluto-success);
+}
+.btn-outline-success:hover {
+    color: var(--pluto-success-text);
+}
+.btn-outline-danger {
+    --btn-bg: transparent;
+    --btn-fg: var(--pluto-danger-strong);
+    --btn-border: var(--pluto-danger);
+    --btn-hover-bg: var(--pluto-danger);
+    --btn-hover-border: var(--pluto-danger);
+}
+.btn-outline-danger:hover {
+    color: var(--pluto-danger-text);
+}
+
+/* Ghost — subtle, no border */
+.btn-ghost {
+    --btn-bg: transparent;
+    --btn-fg: var(--pluto-text-strong);
+    --btn-border: transparent;
+    --btn-hover-bg: var(--pluto-bg-muted);
+    --btn-hover-border: transparent;
+}
+
+/* Link-style button */
+.btn-link {
+    --btn-bg: transparent;
+    --btn-fg: var(--pluto-link);
+    --btn-border: transparent;
+    --btn-hover-bg: transparent;
+    --btn-hover-border: transparent;
+    text-decoration: underline;
+    text-decoration-color: var(--pluto-link-underline);
+}
+.btn-link:hover {
+    text-decoration-color: var(--pluto-link);
+}
+
+/* Sizes */
+.btn-sm {
+    padding: 0.3em 0.7em;
+    font-size: var(--pluto-fs-xs);
+}
+.btn-lg {
+    padding: 0.7em 1.4em;
+    font-size: var(--pluto-fs-base);
+}
+
+/* Block (full-width) */
+.btn-block {
+    display: flex;
+    width: 100%;
+}
+
+/* Button group — collapses borders between buttons */
+.btn-group {
+    display: inline-flex;
+    vertical-align: middle;
+}
+.btn-group > .btn {
+    border-radius: 0;
+    margin-inline-end: -2px;
+}
+.btn-group > .btn:first-child {
+    border-start-start-radius: var(--pluto-radius-sm);
+    border-end-start-radius: var(--pluto-radius-sm);
+}
+.btn-group > .btn:last-child {
+    border-start-end-radius: var(--pluto-radius-sm);
+    border-end-end-radius: var(--pluto-radius-sm);
+    margin-inline-end: 0;
+}
+.btn-group > .btn:hover,
+.btn-group > .btn:focus-visible {
+    z-index: 1;
+}
+
+/* =====================================================================
+ * 2. FORMS
+ * ===================================================================== */
+
+.form-label {
+    display: inline-block;
+    margin-block-end: var(--pluto-space-1);
+    font-family: var(--pluto-font-ui);
+    font-weight: var(--pluto-fw-medium);
+    color: var(--pluto-text-strong);
+}
+
+.form-text {
+    margin-block-start: var(--pluto-space-1);
+    font-size: var(--pluto-fs-sm);
+    color: var(--pluto-text-muted);
+}
+
+.form-control,
+.form-select {
+    display: block;
+    width: 100%;
+    padding: 0.5em 0.75em;
+    font-family: var(--pluto-font-mono-roboto);
+    font-size: var(--pluto-fs-sm);
+    line-height: 1.4;
+    color: var(--pluto-text);
+    background-color: var(--pluto-bg);
+    background-clip: padding-box;
+    border: var(--pluto-bw-2) solid var(--pluto-border);
+    border-radius: var(--pluto-radius-sm);
+    transition:
+        border-color var(--pluto-transition),
+        box-shadow var(--pluto-transition);
+}
+
+.form-control:focus,
+.form-select:focus {
+    outline: none;
+    border-color: var(--pluto-info);
+    box-shadow: 0 0 0 3px var(--pluto-info-soft);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: var(--pluto-bg-muted);
+}
+
+.form-control::placeholder {
+    color: var(--pluto-text-muted);
+    opacity: 1;
+}
+
+textarea.form-control {
+    min-height: 6rem;
+    resize: vertical;
+}
+
+.form-select {
+    padding-inline-end: 2.25em;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='%23555' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 0.75em center;
+    background-size: 16px 12px;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Checks & radios */
+.form-check {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    margin-block-end: var(--pluto-space-1);
+    font-family: var(--pluto-font-ui);
+}
+
+.form-check-input {
+    flex: 0 0 auto;
+    width: 1.1em;
+    height: 1.1em;
+    margin: 0;
+    accent-color: var(--pluto-primary);
+    cursor: pointer;
+}
+
+.form-check-input:focus-visible {
+    outline: none;
+    box-shadow: var(--pluto-focus-ring);
+}
+
+.form-check-label {
+    cursor: pointer;
+    color: var(--pluto-text);
+}
+
+/* Range */
+.form-range {
+    width: 100%;
+    accent-color: var(--pluto-primary);
+}
+
+/* Validation states */
+.form-control.is-valid,
+.form-select.is-valid {
+    border-color: var(--pluto-success-strong);
+}
+.form-control.is-valid:focus {
+    box-shadow: 0 0 0 3px var(--pluto-success-soft);
+}
+.form-control.is-invalid,
+.form-select.is-invalid {
+    border-color: var(--pluto-danger-strong);
+}
+.form-control.is-invalid:focus {
+    box-shadow: 0 0 0 3px var(--pluto-danger-soft);
+}
+
+.invalid-feedback {
+    display: none;
+    color: var(--pluto-danger-strong);
+    font-size: var(--pluto-fs-sm);
+    margin-block-start: var(--pluto-space-1);
+}
+.form-control.is-invalid ~ .invalid-feedback,
+.form-select.is-invalid ~ .invalid-feedback {
+    display: block;
+}
+
+/* Input group */
+.input-group {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+}
+.input-group > .form-control,
+.input-group > .form-select,
+.input-group > .btn,
+.input-group > .input-group-text {
+    border-radius: 0;
+    margin-inline-end: -2px;
+}
+.input-group > *:first-child {
+    border-start-start-radius: var(--pluto-radius-sm);
+    border-end-start-radius: var(--pluto-radius-sm);
+}
+.input-group > *:last-child {
+    border-start-end-radius: var(--pluto-radius-sm);
+    border-end-end-radius: var(--pluto-radius-sm);
+    margin-inline-end: 0;
+}
+.input-group > .form-control,
+.input-group > .form-select {
+    flex: 1 1 auto;
+    width: 1%;
+    min-width: 0;
+}
+.input-group > .form-control:focus,
+.input-group > .form-select:focus {
+    z-index: 3;
+}
+
+.input-group-text {
+    display: flex;
+    align-items: center;
+    padding: 0.5em 0.75em;
+    font-family: var(--pluto-font-mono-roboto);
+    font-size: var(--pluto-fs-sm);
+    color: var(--pluto-text);
+    background-color: var(--pluto-bg-soft);
+    border: var(--pluto-bw-2) solid var(--pluto-border);
+    white-space: nowrap;
+}
+
+/* =====================================================================
+ * 3. ALERTS  (Pluto's admonitions, generalized)
+ * ===================================================================== */
+
+.alert {
+    --alert-bg: var(--pluto-bg-soft);
+    --alert-accent: var(--pluto-border-strong);
+    --alert-title-fg: var(--pluto-text-strong);
+
+    position: relative;
+    margin-block: var(--pluto-space-3);
+    padding: var(--pluto-space-3);
+    border-radius: var(--pluto-radius-lg);
+    background-color: var(--alert-bg);
+    border: 5px solid var(--alert-accent);
+    color: var(--pluto-text);
+}
+
+.alert-title {
+    display: block;
+    font-family: var(--pluto-font-serif);
+    font-feature-settings: "lnum", "pnum";
+    font-weight: var(--pluto-fw-semibold);
+    font-size: var(--pluto-fs-xl);
+    color: var(--alert-title-fg);
+    background-color: var(--alert-accent);
+    margin: calc(-1 * var(--pluto-space-3)) calc(-1 * var(--pluto-space-3)) var(--pluto-space-2);
+    padding: 0.4em var(--pluto-space-3);
+}
+
+.alert > *:last-child {
+    margin-block-end: 0;
+}
+
+.alert-success {
+    --alert-bg: var(--pluto-success-soft);
+    --alert-accent: var(--pluto-success);
+    --alert-title-fg: white;
+}
+.alert-info {
+    --alert-bg: var(--pluto-info-soft);
+    --alert-accent: var(--pluto-info);
+    --alert-title-fg: white;
+}
+.alert-warning {
+    --alert-bg: var(--pluto-warning-soft);
+    --alert-accent: var(--pluto-warning);
+    --alert-title-fg: var(--pluto-warning-text);
+}
+.alert-danger {
+    --alert-bg: var(--pluto-danger-soft);
+    --alert-accent: var(--pluto-danger);
+    --alert-title-fg: white;
+}
+.alert-primary {
+    --alert-bg: var(--pluto-primary-soft);
+    --alert-accent: var(--pluto-primary);
+    --alert-title-fg: white;
+}
+
+/* Hint variant — content blurred until hovered */
+.alert-hint {
+    --alert-bg: var(--pluto-info-soft);
+    --alert-accent: var(--pluto-info);
+    --alert-title-fg: white;
+}
+.alert-hint > *:not(.alert-title) {
+    filter: blur(0.25em);
+    transition: filter var(--pluto-transition-fast) linear;
+}
+.alert-hint:hover > *:not(.alert-title),
+.alert-hint:focus-within > *:not(.alert-title) {
+    filter: blur(0);
+}
+
+/* Dismiss button (place inside .alert) */
+.alert-dismiss {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    background: transparent;
+    border: 0;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: var(--alert-title-fg);
+    line-height: 1;
+}
+
+/* =====================================================================
+ * 4. BADGES
+ * ===================================================================== */
+
+.badge {
+    display: inline-block;
+    padding: 0.2em 0.65em;
+    font-family: var(--pluto-font-mono-roboto);
+    font-size: var(--pluto-fs-xs);
+    font-weight: var(--pluto-fw-semibold);
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    color: var(--pluto-text-strong);
+    background-color: var(--pluto-bg-muted);
+    border-radius: var(--pluto-radius-md);
+}
+
+.badge-pill {
+    border-radius: var(--pluto-radius-pill);
+    padding-inline: 0.85em;
+}
+
+.badge-primary {
+    background-color: var(--pluto-primary);
+    color: var(--pluto-primary-text);
+}
+.badge-success {
+    background-color: var(--pluto-success);
+    color: var(--pluto-success-text);
+}
+.badge-info {
+    background-color: var(--pluto-info);
+    color: var(--pluto-info-text);
+}
+.badge-warning {
+    background-color: var(--pluto-warning);
+    color: var(--pluto-warning-text);
+}
+.badge-danger {
+    background-color: var(--pluto-danger);
+    color: var(--pluto-danger-text);
+}
+.badge-dark {
+    background-color: var(--pluto-dark);
+    color: var(--pluto-dark-text);
+}
+.badge-light {
+    background-color: var(--pluto-light);
+    color: var(--pluto-light-text);
+}
+
+/* =====================================================================
+ * 5. CARDS
+ * ===================================================================== */
+
+.card {
+    --card-accent: var(--pluto-border);
+    --card-accent-bw: 3px;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    color: var(--pluto-text);
+    background-color: var(--pluto-surface);
+    border: var(--card-accent-bw) solid var(--card-accent);
+    border-radius: var(--pluto-radius-lg);
+    box-shadow: var(--pluto-shadow);
+    overflow: hidden;
+    text-decoration: none;
+}
+
+a.card {
+    color: inherit;
+}
+a.card:hover {
+    text-decoration: none;
+}
+
+.card-img-top {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    background-color: var(--card-accent);
+    display: block;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    padding: var(--pluto-space-3);
+}
+
+.card-title {
+    font-family: var(--pluto-font-serif);
+    font-weight: var(--pluto-fw-semibold);
+    font-size: var(--pluto-fs-xl);
+    margin-block-start: 0;
+    margin-block-end: var(--pluto-space-2);
+    color: var(--pluto-text-strong);
+    border: none;
+}
+
+.card-subtitle {
+    margin-block-start: calc(-1 * var(--pluto-space-1));
+    margin-block-end: var(--pluto-space-2);
+    font-size: var(--pluto-fs-sm);
+    color: var(--pluto-text-muted);
+}
+
+.card-text {
+    color: var(--pluto-text);
+    margin-block-end: var(--pluto-space-2);
+}
+.card-text:last-child {
+    margin-block-end: 0;
+}
+
+.card-header,
+.card-footer {
+    padding: var(--pluto-space-2) var(--pluto-space-3);
+    background-color: var(--pluto-bg-soft);
+    color: var(--pluto-text-strong);
+    font-family: var(--pluto-font-ui);
+    font-weight: var(--pluto-fw-medium);
+}
+
+.card-header {
+    border-bottom: var(--pluto-bw-1) solid var(--pluto-border);
+}
+
+.card-footer {
+    border-top: var(--pluto-bw-1) solid var(--pluto-border);
+}
+
+/* Card variants — recolor the border */
+.card-primary {
+    --card-accent: var(--pluto-primary);
+}
+.card-success {
+    --card-accent: var(--pluto-success);
+}
+.card-info {
+    --card-accent: var(--pluto-info);
+}
+.card-warning {
+    --card-accent: var(--pluto-warning);
+}
+.card-danger {
+    --card-accent: var(--pluto-danger);
+}
+
+/* =====================================================================
+ * 6. TABLES
+ * ===================================================================== */
+
+.table {
+    width: 100%;
+    margin-block-end: var(--pluto-space-3);
+    color: var(--pluto-text);
+    border-collapse: collapse;
+    font-family: var(--pluto-font-sans);
+}
+
+.table > thead {
+    font-family: var(--pluto-font-serif);
+    font-weight: var(--pluto-fw-bold);
+    color: var(--pluto-text-strong);
+    border-bottom: var(--pluto-bw-2) solid var(--pluto-border-strong);
+}
+
+.table th,
+.table td {
+    padding: 0.4em 0.75em;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: var(--pluto-bw-1) solid var(--pluto-border);
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: var(--pluto-bg-soft);
+}
+
+.table-hover > tbody > tr:hover {
+    background-color: var(--pluto-bg-muted);
+}
+
+.table-bordered,
+.table-bordered th,
+.table-bordered td {
+    border: var(--pluto-bw-1) solid var(--pluto-border);
+}
+
+.table-borderless,
+.table-borderless th,
+.table-borderless td {
+    border: 0;
+}
+
+.table-sm th,
+.table-sm td {
+    padding: 0.25em 0.5em;
+    font-size: var(--pluto-fs-sm);
+}
+
+.table-mono td {
+    font-family: var(--pluto-font-mono);
+    font-size: var(--pluto-fs-sm);
+    font-variant-ligatures: none;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+/* =====================================================================
+ * 7. LIST GROUPS
+ * ===================================================================== */
+
+.list-group {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    border-radius: var(--pluto-radius-md);
+    list-style: none;
+    overflow: hidden;
+    border: var(--pluto-bw-1) solid var(--pluto-border);
+}
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: var(--pluto-space-2) var(--pluto-space-3);
+    background-color: var(--pluto-surface);
+    color: var(--pluto-text);
+    border-bottom: var(--pluto-bw-1) solid var(--pluto-border);
+    text-decoration: none;
+    transition: background-color var(--pluto-transition);
+}
+
+.list-group-item:last-child {
+    border-bottom: 0;
+}
+
+a.list-group-item:hover,
+button.list-group-item:hover {
+    background-color: var(--pluto-bg-soft);
+}
+
+.list-group-item.active {
+    background-color: var(--pluto-primary);
+    color: var(--pluto-primary-text);
+    border-color: var(--pluto-primary);
+}
+
+.list-group-item.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.list-group-flush {
+    border-radius: 0;
+    border-inline: 0;
+    border-block: 0;
+}
+.list-group-flush > .list-group-item:first-child {
+    border-block-start: var(--pluto-bw-1) solid var(--pluto-border);
+}
+
+/* =====================================================================
+ * 8. BREADCRUMBS
+ * ===================================================================== */
+
+.breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: var(--pluto-font-mono-roboto);
+    font-size: var(--pluto-fs-sm);
+}
+
+.breadcrumb-item {
+    display: flex;
+    align-items: center;
+    color: var(--pluto-text-muted);
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: "/";
+    padding: 0 0.6em;
+    color: var(--pluto-text-muted);
+}
+
+.breadcrumb-item a {
+    color: var(--pluto-link);
+}
+
+.breadcrumb-item.active {
+    color: var(--pluto-text-strong);
+    font-weight: var(--pluto-fw-semibold);
+}
+
+/* =====================================================================
+ * 9. PAGINATION
+ * ===================================================================== */
+
+.pagination {
+    display: inline-flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-radius: var(--pluto-radius-sm);
+    overflow: hidden;
+    border: var(--pluto-bw-1) solid var(--pluto-border);
+    font-family: var(--pluto-font-mono-roboto);
+}
+
+.page-item + .page-item {
+    border-inline-start: var(--pluto-bw-1) solid var(--pluto-border);
+}
+
+.page-link {
+    display: block;
+    padding: 0.4em 0.85em;
+    color: var(--pluto-link);
+    text-decoration: none;
+    background-color: var(--pluto-surface);
+    transition: background-color var(--pluto-transition);
+    cursor: pointer;
+    font-size: var(--pluto-fs-sm);
+    border: 0;
+}
+
+.page-link:hover {
+    background-color: var(--pluto-bg-soft);
+}
+
+.page-item.active > .page-link {
+    background-color: var(--pluto-primary);
+    color: var(--pluto-primary-text);
+}
+
+.page-item.disabled > .page-link {
+    color: var(--pluto-text-muted);
+    pointer-events: none;
+    background-color: var(--pluto-bg-soft);
+}
+
+/* =====================================================================
+ * 10. PROGRESS
+ * ===================================================================== */
+
+.progress {
+    display: flex;
+    height: 0.6rem;
+    overflow: hidden;
+    border-radius: var(--pluto-radius-pill);
+    background-color: var(--pluto-bg-muted);
+}
+
+.progress-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pluto-text-inverse);
+    background-color: var(--pluto-primary);
+    font-size: var(--pluto-fs-xs);
+    transition: width var(--pluto-transition-slow);
+}
+
+.progress-success > .progress-bar {
+    background-color: var(--pluto-success);
+}
+.progress-info > .progress-bar {
+    background-color: var(--pluto-info);
+}
+.progress-warning > .progress-bar {
+    background-color: var(--pluto-warning);
+}
+.progress-danger > .progress-bar {
+    background-color: var(--pluto-danger);
+}
+
+/* Indeterminate / loading bar (Pluto's homepage bar) */
+.progress-indeterminate {
+    overflow: hidden;
+    background: var(--pluto-bg-muted);
+    height: 6px;
+    border-radius: var(--pluto-radius-pill);
+    position: relative;
+}
+.progress-indeterminate::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        var(--pluto-cream-200) 30%,
+        var(--pluto-primary-soft) 60%,
+        transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: pluto-indeterminate 1.6s linear infinite;
+}
+
+@keyframes pluto-indeterminate {
+    from {
+        background-position: 200% 0;
+    }
+    to {
+        background-position: -200% 0;
+    }
+}
+
+/* =====================================================================
+ * 11. SPINNERS
+ * ===================================================================== */
+
+.spinner {
+    display: inline-block;
+    width: 1.4em;
+    height: 1.4em;
+    vertical-align: -0.2em;
+    border: 0.18em solid var(--pluto-bg-muted);
+    border-inline-start-color: var(--pluto-primary);
+    border-radius: 50%;
+    animation: pluto-spin 0.8s linear infinite;
+}
+
+@keyframes pluto-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner-dot {
+    display: inline-block;
+    width: 0.7em;
+    height: 0.7em;
+    vertical-align: -0.1em;
+    border-radius: 50%;
+    background: var(--pluto-warning);
+    animation: pluto-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes pluto-pulse {
+    0%,
+    100% {
+        opacity: 0.4;
+        transform: scale(0.85);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* =====================================================================
+ * 12. NAVBAR
+ * ===================================================================== */
+
+.navbar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--pluto-space-3);
+    padding: var(--pluto-space-2) var(--pluto-space-3);
+    background-color: var(--pluto-surface);
+    border-bottom: var(--pluto-bw-1) solid var(--pluto-border);
+    font-family: var(--pluto-font-mono-roboto);
+    font-size: var(--pluto-fs-sm);
+}
+
+.navbar-sticky {
+    position: sticky;
+    top: 0;
+    z-index: var(--pluto-z-sticky);
+}
+
+.navbar-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5ch;
+    font-family: var(--pluto-font-ui);
+    font-weight: var(--pluto-fw-bold);
+    font-size: var(--pluto-fs-lg);
+    color: var(--pluto-text-strong);
+    text-decoration: none;
+}
+
+.navbar-brand img {
+    height: 1.4em;
+    width: auto;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--pluto-space-2);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-nav .nav-link {
+    color: var(--pluto-text);
+    text-decoration: none;
+    padding: 0.3em 0.5em;
+    border-radius: var(--pluto-radius-sm);
+    transition: background-color var(--pluto-transition);
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: var(--pluto-bg-soft);
+}
+
+.navbar-nav .nav-link.active {
+    color: var(--pluto-text-strong);
+    font-weight: var(--pluto-fw-semibold);
+}
+
+.navbar-spacer {
+    flex: 1 1 auto;
+}
+
+/* =====================================================================
+ * 13. NAV TABS / PILLS
+ * ===================================================================== */
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: var(--pluto-space-1);
+}
+
+.nav .nav-link {
+    display: inline-block;
+    padding: 0.4em 0.85em;
+    color: var(--pluto-text);
+    text-decoration: none;
+    font-family: var(--pluto-font-ui);
+    border-radius: var(--pluto-radius-sm);
+    transition:
+        background-color var(--pluto-transition),
+        color var(--pluto-transition);
+    cursor: pointer;
+}
+.nav .nav-link:hover {
+    color: var(--pluto-text-strong);
+}
+
+.nav-tabs {
+    border-bottom: var(--pluto-bw-2) solid var(--pluto-border);
+    gap: 0;
+}
+.nav-tabs .nav-link {
+    border-radius: var(--pluto-radius-sm) var(--pluto-radius-sm) 0 0;
+    border: var(--pluto-bw-2) solid transparent;
+    margin-block-end: -2px;
+    background: transparent;
+}
+.nav-tabs .nav-link.active {
+    background-color: var(--pluto-bg);
+    border-color: var(--pluto-border) var(--pluto-border) var(--pluto-bg);
+    color: var(--pluto-text-strong);
+    font-weight: var(--pluto-fw-semibold);
+}
+.nav-tabs .nav-link:hover:not(.active) {
+    border-color: var(--pluto-bg-soft) var(--pluto-bg-soft) var(--pluto-border);
+    background-color: var(--pluto-bg-soft);
+}
+
+.nav-pills .nav-link {
+    border-radius: var(--pluto-radius-pill);
+}
+.nav-pills .nav-link.active {
+    background-color: var(--pluto-primary);
+    color: var(--pluto-primary-text);
+}
+
+.nav-fill .nav-link {
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+/* =====================================================================
+ * 14. MODAL  (CSS-only via [open] on <dialog>, plus a non-dialog version)
+ * ===================================================================== */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: var(--pluto-z-modal);
+    display: none;
+    place-items: center;
+    padding: var(--pluto-space-3);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal.show {
+    display: grid;
+    animation: pluto-fade-in var(--pluto-transition);
+}
+
+@keyframes pluto-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-dialog {
+    width: 100%;
+    max-width: 540px;
+    background-color: var(--pluto-surface);
+    border-radius: var(--pluto-radius-lg);
+    border: var(--pluto-bw-2) solid var(--pluto-border);
+    box-shadow: var(--pluto-shadow-xl);
+    overflow: hidden;
+    animation: pluto-slide-up var(--pluto-transition-slow);
+}
+
+@keyframes pluto-slide-up {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-dialog-lg {
+    max-width: 800px;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--pluto-space-3);
+    border-bottom: var(--pluto-bw-1) solid var(--pluto-border);
+    background-color: var(--pluto-bg-soft);
+}
+
+.modal-title {
+    margin: 0;
+    font-family: var(--pluto-font-serif);
+    font-size: var(--pluto-fs-2xl);
+    color: var(--pluto-text-strong);
+    border: none;
+}
+
+.modal-body {
+    padding: var(--pluto-space-3);
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.modal-footer {
+    display: flex;
+    gap: var(--pluto-space-2);
+    justify-content: flex-end;
+    padding: var(--pluto-space-3);
+    border-top: var(--pluto-bw-1) solid var(--pluto-border);
+    background-color: var(--pluto-bg-soft);
+}
+
+/* Native dialog styling — works with <dialog> open/close */
+dialog.modal-native {
+    border: var(--pluto-bw-2) solid var(--pluto-border);
+    border-radius: var(--pluto-radius-lg);
+    background-color: var(--pluto-surface);
+    color: var(--pluto-text);
+    padding: 0;
+    box-shadow: var(--pluto-shadow-xl);
+    max-width: 540px;
+    width: 100%;
+}
+dialog.modal-native::backdrop {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/* =====================================================================
+ * 15. TOOLTIP / POPOVER
+ * ===================================================================== */
+
+[data-tooltip] {
+    position: relative;
+}
+[data-tooltip]:hover::after,
+[data-tooltip]:focus-visible::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.3em 0.65em;
+    background: var(--pluto-dark);
+    color: var(--pluto-dark-text);
+    font-size: var(--pluto-fs-xs);
+    font-family: var(--pluto-font-mono-roboto);
+    border-radius: var(--pluto-radius-sm);
+    box-shadow: var(--pluto-shadow);
+    white-space: nowrap;
+    z-index: var(--pluto-z-tooltip);
+    pointer-events: none;
+}
+
+/* =====================================================================
+ * 16. CODE CELL  (Pluto's signature; opt-in)
+ * ===================================================================== */
+
+.code-cell {
+    display: block;
+    position: relative;
+    margin-block: var(--pluto-space-cell);
+    border-left: 4px solid transparent;
+    transition: border-color var(--pluto-transition);
+}
+
+.code-cell:hover {
+    border-left-color: var(--pluto-border);
+}
+
+.code-cell-input {
+    display: block;
+    margin: 0;
+    padding: 0.6rem 0.85rem;
+    background-color: var(--pluto-code-bg);
+    color: var(--pluto-code-text);
+    border: var(--pluto-bw-1) solid var(--pluto-border);
+    border-bottom-right-radius: 4px;
+    font-family: var(--pluto-font-mono);
+    font-size: var(--pluto-fs-sm);
+    font-variant-ligatures: none;
+    overflow-x: auto;
+    white-space: pre;
+}
+
+.code-cell-output {
+    display: block;
+    padding: var(--pluto-space-2) var(--pluto-space-3);
+    background-color: var(--pluto-bg);
+    color: var(--pluto-text);
+    overflow-x: auto;
+    border-block-end: 1px solid transparent;
+}
+
+.code-cell.is-error .code-cell-input {
+    border-color: var(--pluto-danger);
+}
+.code-cell.is-error {
+    border-left-color: var(--pluto-danger);
+}
+
+.code-cell-assignee {
+    font-family: var(--pluto-font-mono);
+    font-size: var(--pluto-fs-xs);
+    color: var(--pluto-text-muted);
+    margin-inline-end: 0.4ch;
+}
+.code-cell-assignee::after {
+    content: "\a0=\a0";
+    opacity: 0.6;
+}
+
+/* =====================================================================
+ * 17. HERO  (large welcome / landing block)
+ * ===================================================================== */
+
+.hero {
+    /* Padding scales with viewport: tighter on phones, generous on desktops. */
+    padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 2rem);
+    background-color: var(--pluto-cream-100);
+    /* Cream background stays light in both themes, so the text colors
+       must too — otherwise dark-mode heading text disappears. */
+    color: var(--pluto-slate-700);
+    text-align: center;
+}
+
+.hero-fluid {
+    padding-block: clamp(3rem, 9vw, 6rem);
+}
+
+.hero h1,
+.hero h2,
+.hero h3,
+.hero .display-1,
+.hero .display-2,
+.hero .display-3 {
+    border: none;
+    margin-block-start: 0;
+    color: var(--pluto-slate-900);
+}
+
+.hero .lead,
+.hero .text-muted {
+    color: var(--pluto-slate-600);
+}
+
+/* =====================================================================
+ * 18. PLUTO LOGO  (the signature wordmark)
+ * ===================================================================== */
+
+.pluto-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4ch;
+    padding: 0.3em 0.5em;
+    font-family: var(--pluto-font-ui);
+    font-weight: var(--pluto-fw-bold);
+    font-size: 1.4rem;
+    color: var(--pluto-text-strong);
+    background-color: var(--pluto-bg);
+    border-radius: var(--pluto-radius-md);
+    text-decoration: none;
+}
+
+.pluto-logo img,
+.pluto-logo svg {
+    height: 1.2em;
+    width: 1.2em;
+}
+
+/* =====================================================================
+ * 19. SWITCH  (toggle pill — from PlutoUI's `Switch`)
+ * ===================================================================== */
+
+.switch {
+    --switch-w: 2.2em;
+    --switch-h: 1em;
+    --switch-pad: 0.15em;
+    --switch-off: var(--pluto-neutral);
+    --switch-on: var(--pluto-success);
+
+    appearance: none;
+    -webkit-appearance: none;
+    display: inline-block;
+    width: var(--switch-w);
+    height: var(--switch-h);
+    margin: 0;
+    background: var(--switch-off);
+    border-radius: var(--pluto-radius-pill);
+    position: relative;
+    cursor: pointer;
+    vertical-align: -0.15em;
+    transition: background var(--pluto-transition-slow);
+}
+
+.switch:checked {
+    background: var(--switch-on);
+}
+
+.switch::before {
+    content: "";
+    position: absolute;
+    top: var(--switch-pad);
+    left: var(--switch-pad);
+    width: calc(var(--switch-h) - 2 * var(--switch-pad));
+    height: calc(var(--switch-h) - 2 * var(--switch-pad));
+    background: white;
+    border-radius: 50%;
+    box-shadow: var(--pluto-shadow-sm);
+    transition: transform var(--pluto-transition-slow);
+}
+
+.switch:checked::before {
+    transform: translateX(calc(var(--switch-w) - var(--switch-h)));
+}
+
+.switch:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.switch-sm {
+    --switch-w: 1.6em;
+    --switch-h: 0.75em;
+}
+.switch-lg {
+    --switch-w: 3em;
+    --switch-h: 1.4em;
+}
+
+.switch-primary {
+    --switch-on: var(--pluto-primary);
+}
+.switch-info {
+    --switch-on: var(--pluto-info);
+}
+.switch-warning {
+    --switch-on: var(--pluto-warning);
+}
+.switch-danger {
+    --switch-on: var(--pluto-danger);
+}
+
+/* =====================================================================
+ * 20. RANGE  (styled <input type=range>)
+ *
+ * The PlutoUI `RangeSlider` is built on noUiSlider; here we provide a
+ * native styled range, plus class hooks (`.range-slider`) so the same
+ * tokens style noUiSlider if you choose to load it.
+ * ===================================================================== */
+
+.range {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    background: var(--pluto-bg-muted);
+    border-radius: var(--pluto-radius-pill);
+    outline: none;
+    cursor: pointer;
+}
+
+.range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1.1em;
+    height: 1.1em;
+    background: var(--pluto-primary);
+    border: 2px solid var(--pluto-bg);
+    border-radius: 50%;
+    box-shadow: var(--pluto-shadow-sm);
+    cursor: grab;
+    transition: transform var(--pluto-transition);
+}
+.range::-webkit-slider-thumb:active {
+    cursor: grabbing;
+    transform: scale(1.1);
+}
+
+.range::-moz-range-thumb {
+    width: 1.1em;
+    height: 1.1em;
+    background: var(--pluto-primary);
+    border: 2px solid var(--pluto-bg);
+    border-radius: 50%;
+    box-shadow: var(--pluto-shadow-sm);
+    cursor: grab;
+}
+
+.range:focus-visible::-webkit-slider-thumb {
+    box-shadow: var(--pluto-focus-ring);
+}
+.range:focus-visible::-moz-range-thumb {
+    box-shadow: var(--pluto-focus-ring);
+}
+
+/* noUiSlider overlay — when consumers load nouislider.css, these rules
+   re-skin its handles to match the framework. Optional. */
+.range-slider .noUi-connect {
+    background: var(--pluto-primary);
+}
+.range-slider.noUi-horizontal {
+    height: 8px;
+}
+.range-slider.noUi-horizontal .noUi-handle {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--pluto-primary);
+    border: 2px solid var(--pluto-bg);
+    box-shadow: var(--pluto-shadow-sm);
+    transform: translateX(-9px);
+}
+.range-slider .noUi-handle::before,
+.range-slider .noUi-handle::after {
+    content: none;
+}
+.range-slider .noUi-tooltip {
+    font-family: var(--pluto-font-mono-roboto);
+    font-size: var(--pluto-fs-xs);
+    background: var(--pluto-dark);
+    color: var(--pluto-dark-text);
+    border: none;
+    border-radius: var(--pluto-radius-sm);
+    padding: 0.15em 0.5em;
+}
+
+/* =====================================================================
+ * 21. CHECK-LIST  (multi-checkbox group — from PlutoUI's `MultiCheckBox`)
+ * ===================================================================== */
+
+.check-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25em 0.85em;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.check-list-column {
+    flex-direction: column;
+}
+
+.check-list > li,
+.check-list > .form-check {
+    margin: 0;
+}
+
+.check-list .check-list-all {
+    font-style: italic;
+    color: var(--pluto-text-muted);
+    border-bottom: 1px dotted var(--pluto-border);
+    padding-block-end: 0.2em;
+    margin-block-end: 0.2em;
+    flex-basis: 100%;
+}
+
+/* =====================================================================
+ * 22. NOTEBOOK CARD  (from PlutoUI's `NotebookCard`)
+ *
+ * A horizontal "feature card" with a thumbnail, title, blurb, and a
+ * pill-shaped CTA. Used to link out to documentation or examples.
+ * ===================================================================== */
+
+.notebook-card {
+    --nbcard-grad: linear-gradient(80deg, var(--pluto-rose-50), var(--pluto-cream-100));
+
+    container-type: inline-size;
+    display: flex;
+    flex-direction: row;
+    gap: var(--pluto-space-3);
+    max-width: 700px;
+    margin-block: var(--pluto-space-2);
+    padding: var(--pluto-space-2);
+    background: var(--nbcard-grad);
+    border-radius: var(--pluto-radius-md);
+    box-shadow: var(--pluto-shadow);
+    color: var(--pluto-slate-900);
+    text-decoration: none;
+}
+
+.notebook-card-thumb {
+    flex: 0 0 35%;
+    aspect-ratio: 3 / 2;
+    border-radius: var(--pluto-radius-sm);
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.05);
+}
+.notebook-card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.notebook-card-body {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+}
+
+.notebook-card-body h2,
+.notebook-card-body h3,
+.notebook-card-title {
+    color: var(--pluto-slate-900);
+    border: none;
+    margin: 0 0 var(--pluto-space-1);
+    font-size: var(--pluto-fs-xl);
+}
+
+.notebook-card-body p {
+    color: var(--pluto-slate-700);
+    margin: 0;
+}
+
+.notebook-card-nav {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--pluto-space-2);
+}
+
+.notebook-card-cta {
+    display: inline-block;
+    padding: 0.4em 1em;
+    background: white;
+    color: var(--pluto-slate-900);
+    border-radius: var(--pluto-radius-pill);
+    font-family: var(--pluto-font-ui);
+    font-weight: var(--pluto-fw-bold);
+    font-size: var(--pluto-fs-sm);
+    text-decoration: none;
+    box-shadow: var(--pluto-shadow-sm);
+    transition: transform var(--pluto-transition);
+}
+.notebook-card-cta:hover {
+    transform: translateY(-1px);
+}
+
+@container (max-width: 400px) {
+    .notebook-card {
+        flex-direction: column;
+    }
+    .notebook-card-thumb {
+        flex-basis: auto;
+    }
+}
+
+/* Variant grad palette — pick a theme */
+.notebook-card-info {
+    --nbcard-grad: linear-gradient(80deg, var(--pluto-sky-50), var(--pluto-sky-100));
+}
+.notebook-card-success {
+    --nbcard-grad: linear-gradient(80deg, var(--pluto-sage-50), var(--pluto-sage-100));
+}
+.notebook-card-warning {
+    --nbcard-grad: linear-gradient(80deg, var(--pluto-sand-50), var(--pluto-sand-100));
+}
+
+/* =====================================================================
+ * 23. TOC  (table of contents — from PlutoUI's `TableOfContents`)
+ * ===================================================================== */
+
+.toc {
+    font-family: var(--pluto-font-ui);
+    color: var(--pluto-text);
+    background: var(--pluto-surface);
+    border-radius: var(--pluto-radius-lg);
+    padding: var(--pluto-space-2);
+    border: var(--pluto-bw-1) solid var(--pluto-border);
+}
+
+.toc-header {
+    font-family: var(--pluto-font-serif);
+    font-feature-settings: "lnum", "pnum";
+    font-weight: var(--pluto-fw-bold);
+    font-size: var(--pluto-fs-xl);
+    color: var(--pluto-text-strong);
+    margin: 0;
+    padding: 0 0 var(--pluto-space-1);
+    border: none;
+    border-bottom: var(--pluto-bw-2) solid var(--pluto-border);
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+}
+
+.toc nav,
+.toc-list {
+    list-style: none;
+    margin: 0;
+    padding: var(--pluto-space-1) 0 0;
+}
+
+.toc a {
+    display: block;
+    padding: 0.18em 0.4em;
+    margin: 0;
+    border-radius: var(--pluto-radius-sm);
+    color: var(--pluto-text);
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background-color var(--pluto-transition);
+}
+
+.toc a:hover {
+    color: var(--pluto-text-strong);
+    background-color: var(--pluto-bg-soft);
+}
+
+.toc a.active {
+    background-color: var(--pluto-primary-soft);
+    color: var(--pluto-text-strong);
+    font-weight: var(--pluto-fw-semibold);
+}
+
+.toc a.toc-h1 {
+    font-weight: var(--pluto-fw-bold);
+    margin-block-start: 0.5em;
+}
+.toc a.toc-h1:first-child {
+    margin-block-start: 0;
+}
+.toc a.toc-h2 {
+    padding-inline-start: 1em;
+}
+.toc a.toc-h3 {
+    padding-inline-start: 2em;
+}
+.toc a.toc-h4 {
+    padding-inline-start: 3em;
+}
+.toc a.toc-h5 {
+    padding-inline-start: 4em;
+}
+.toc a.toc-h6 {
+    padding-inline-start: 5em;
+}
+
+/* Sticky aside variant — floats top-right at large viewports */
+.toc-aside {
+    position: sticky;
+    top: var(--pluto-space-3);
+    width: min(80vw, 300px);
+    max-height: calc(100vh - 2 * var(--pluto-space-3));
+    overflow: auto;
+    z-index: var(--pluto-z-sticky);
+    box-shadow: var(--pluto-shadow);
+}
+
+@media print {
+    .toc-aside {
+        position: static;
+        max-height: none;
+    }
+}
+
+/* =====================================================================
+ * 24. LAYOUT — aside (sidenote) and wide cell
+ *
+ * From PlutoUI's `Layout.aside` and `WideCell`. Assumes a 700px
+ * primary content column. At ≥ 1030px viewport the aside floats to
+ * the right of the column; below that it flows inline.
+ * ===================================================================== */
+
+.layout-aside {
+    display: block;
+    margin-block: var(--pluto-space-3);
+    padding: var(--pluto-space-2);
+    background: var(--pluto-bg-soft);
+    border-radius: var(--pluto-radius-md);
+    border-inline-start: 3px solid var(--pluto-info);
+    font-size: var(--pluto-fs-sm);
+}
+
+@media (min-width: 1030px) {
+    .layout-aside {
+        position: absolute;
+        right: calc(-1 * 320px);
+        width: 300px;
+        margin: 0;
+        background: transparent;
+        border-radius: 0;
+        border-inline-start: 3px solid var(--pluto-border);
+        padding-inline-start: var(--pluto-space-2);
+    }
+}
+
+/* The host needs `position: relative` for the aside to anchor. */
+.layout-aside-host {
+    position: relative;
+}
+
+/* Wide cell — break out of the notebook column to span more of the page. */
+.layout-wide {
+    width: max-content;
+    max-width: min(95vw, 1200px);
+    margin-inline-start: 50%;
+    transform: translateX(-50%);
+}
+
+/* Flex / grid helpers from Layout.jl */
+.layout-hbox {
+    display: flex;
+    flex-direction: row;
+    gap: var(--pluto-space-2);
+    align-items: stretch;
+}
+.layout-vbox {
+    display: flex;
+    flex-direction: column;
+    gap: var(--pluto-space-2);
+}
+.layout-grid {
+    display: grid;
+    gap: var(--pluto-space-2);
+}

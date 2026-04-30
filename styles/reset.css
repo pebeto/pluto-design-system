@@ -1,0 +1,95 @@
+/* =====================================================================
+ * Pluto Design — Reset
+ *
+ * Lightweight cross-browser reset. Just the essentials — we don't want
+ * to fight the user's other CSS.
+ * ===================================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--pluto-font-base);
+    font-size: var(--pluto-fs-base);
+    font-weight: var(--pluto-fw-regular);
+    line-height: var(--pluto-line-height-base);
+    color: var(--pluto-text);
+    background-color: var(--pluto-bg);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+    display: block;
+    max-width: 100%;
+}
+
+img,
+video {
+    height: auto;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+    margin: 0;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer;
+}
+
+button:disabled,
+[type="button"]:disabled,
+[type="reset"]:disabled,
+[type="submit"]:disabled {
+    cursor: not-allowed;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+:focus-visible {
+    outline: 2px solid transparent;
+    box-shadow: var(--pluto-focus-ring);
+}

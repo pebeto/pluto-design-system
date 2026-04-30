@@ -1,0 +1,368 @@
+/* =====================================================================
+ * Pluto Design — Tokens
+ *
+ * Design tokens for the framework. All values are CSS custom properties
+ * in the `--pluto-*` namespace, so they're trivial to override on
+ * `:root`, on a sub-tree, or per component.
+ *
+ * Light is the default. `prefers-color-scheme: dark` flips automatically.
+ * Force a theme with `<html data-pluto-theme="dark|light">`.
+ * ===================================================================== */
+
+:root {
+    /* ===== TYPEFACE STACKS =============================================== */
+    --pluto-font-serif: "Vollkorn", Palatino, Georgia, serif;
+    --pluto-font-sans:
+        "Alegreya Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --pluto-font-ui:
+        "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
+    --pluto-font-mono: JuliaMono, "Roboto Mono", Menlo, Consolas, "Source Code Pro", monospace;
+    --pluto-font-mono-roboto: "Roboto Mono", Menlo, Consolas, monospace;
+
+    /* Default body font + line-height */
+    --pluto-font-base: var(--pluto-font-sans);
+    --pluto-line-height-base: 1.6;
+    --pluto-line-height-tight: 1.25;
+
+    /* ===== FONT SIZE SCALE =============================================== */
+    /* Modular scale, ratio ~1.2; base is 1rem ≈ 16px. */
+    --pluto-fs-xs: 0.75rem;
+    --pluto-fs-sm: 0.875rem;
+    --pluto-fs-base: 1rem;
+    --pluto-fs-lg: 1.125rem;
+    --pluto-fs-xl: 1.25rem;
+    --pluto-fs-2xl: 1.5rem;
+    --pluto-fs-3xl: 1.875rem;
+    --pluto-fs-4xl: 2.25rem;
+    --pluto-fs-5xl: 3rem;
+
+    --pluto-fw-light: 300;
+    --pluto-fw-regular: 400;
+    --pluto-fw-medium: 500;
+    --pluto-fw-semibold: 600;
+    --pluto-fw-bold: 700;
+
+    /* ===== SPACING SCALE ================================================= */
+    --pluto-space-0: 0;
+    --pluto-space-1: 0.25rem;
+    --pluto-space-2: 0.5rem;
+    --pluto-space-3: 1rem;
+    --pluto-space-4: 1.5rem;
+    --pluto-space-5: 3rem;
+    --pluto-space-6: 4.5rem;
+    /* Pluto's signature cell rhythm */
+    --pluto-space-cell: 17px;
+
+    /* ===== RADII ========================================================= */
+    --pluto-radius-none: 0;
+    --pluto-radius-sm: 3px;
+    --pluto-radius-md: 6px;
+    --pluto-radius-lg: 10px;
+    --pluto-radius-xl: 15px;
+    --pluto-radius-pill: 9999px;
+    --pluto-radius-base: var(--pluto-radius-md);
+
+    /* ===== SHADOWS ======================================================= */
+    --pluto-shadow-none: none;
+    --pluto-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+    --pluto-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    --pluto-shadow-lg: -2px 4px 9px rgba(0, 0, 0, 0.07);
+    --pluto-shadow-xl: 0 10px 24px rgba(0, 0, 0, 0.12);
+    --pluto-shadow-tooltip: 3px 3px 4px rgba(0, 0, 0, 0.2);
+
+    /* ===== BORDER WIDTHS ================================================= */
+    --pluto-bw-1: 1px;
+    --pluto-bw-2: 2px;
+    --pluto-bw-3: 3px;
+    --pluto-bw-4: 4px;
+
+    /* ===== Z-INDEX SCALE ================================================= */
+    --pluto-z-dropdown: 1000;
+    --pluto-z-sticky: 1020;
+    --pluto-z-fixed: 1030;
+    --pluto-z-modal-backdrop: 1040;
+    --pluto-z-modal: 1050;
+    --pluto-z-popover: 1060;
+    --pluto-z-tooltip: 1070;
+
+    /* ===== TRANSITIONS =================================================== */
+    --pluto-transition-fast: 0.1s ease;
+    --pluto-transition: 0.15s ease;
+    --pluto-transition-slow: 0.3s ease;
+
+    /* ===== GRID ========================================================= */
+    --pluto-grid-columns: 12;
+    --pluto-grid-gutter: var(--pluto-space-3);
+    --pluto-container-sm: 540px;
+    --pluto-container-md: 720px;
+    --pluto-container-lg: 960px;
+    --pluto-container-xl: 1140px;
+    /* Pluto's notebook column width */
+    --pluto-container-notebook: 731px;
+
+    /* ===== COLOR PALETTE — Pluto-inspired warm pastels ================== */
+    /* Each scale: -50 (lightest) to -900 (darkest). The accent stops at
+       -500 are the values that show up on Pluto's admonition titles and
+       ports across to .btn / .badge / .alert variants. */
+
+    /* Cream — neutral-warm, Pluto's welcome-page tan */
+    --pluto-cream-50: hsl(35, 60%, 98%);
+    --pluto-cream-100: hsl(35, 66%, 93%);
+    --pluto-cream-200: hsl(35, 60%, 86%);
+    --pluto-cream-300: hsl(35, 50%, 76%);
+
+    /* Slate — neutrals (light → dark) */
+    --pluto-slate-50: hsl(0, 0%, 98%);
+    --pluto-slate-100: hsl(0, 0%, 95%);
+    --pluto-slate-200: hsl(0, 0%, 90%);
+    --pluto-slate-300: hsl(0, 0%, 80%);
+    --pluto-slate-400: hsl(0, 0%, 65%);
+    --pluto-slate-500: hsl(0, 0%, 50%);
+    --pluto-slate-600: hsl(0, 0%, 38%);
+    --pluto-slate-700: hsl(0, 0%, 25%);
+    --pluto-slate-800: hsl(0, 0%, 16%);
+    --pluto-slate-900: hsl(0, 0%, 8%);
+
+    /* Indigo — primary (Pluto's --cm-color-builtin) */
+    --pluto-indigo-50: hsl(225, 60%, 96%);
+    --pluto-indigo-100: hsl(225, 60%, 90%);
+    --pluto-indigo-200: hsl(225, 56%, 80%);
+    --pluto-indigo-300: hsl(225, 56%, 70%);
+    --pluto-indigo-400: hsl(225, 56%, 60%);
+    --pluto-indigo-500: hsl(225, 56%, 50%);
+    --pluto-indigo-600: hsl(225, 56%, 40%);
+    --pluto-indigo-700: hsl(225, 56%, 30%);
+
+    /* Sage — success (Pluto's --jl-message-* admonition) */
+    --pluto-sage-50: hsl(105, 30%, 95%);
+    --pluto-sage-100: hsl(102, 38%, 87%);
+    --pluto-sage-200: hsl(102, 38%, 76%);
+    --pluto-sage-300: hsl(102, 35%, 65%);
+    --pluto-sage-400: hsl(102, 35%, 50%);
+    --pluto-sage-500: hsl(102, 35%, 35%);
+    --pluto-sage-600: hsl(102, 38%, 25%);
+
+    /* Sky — info (Pluto's --jl-info-* admonition) */
+    --pluto-sky-50: hsl(213, 70%, 96%);
+    --pluto-sky-100: hsl(213, 60%, 90%);
+    --pluto-sky-200: hsl(213, 55%, 82%);
+    --pluto-sky-300: hsl(213, 50%, 73%);
+    --pluto-sky-400: hsl(213, 50%, 60%);
+    --pluto-sky-500: hsl(213, 50%, 45%);
+    --pluto-sky-600: hsl(213, 55%, 32%);
+
+    /* Sand — warning (Pluto's --jl-warn-* admonition) */
+    --pluto-sand-50: hsl(54, 50%, 96%);
+    --pluto-sand-100: hsl(54, 40%, 88%);
+    --pluto-sand-200: hsl(54, 40%, 78%);
+    --pluto-sand-300: hsl(54, 40%, 68%);
+    --pluto-sand-400: hsl(48, 40%, 50%);
+    --pluto-sand-500: hsl(45, 50%, 35%);
+    --pluto-sand-600: hsl(45, 60%, 22%);
+
+    /* Rose — danger (Pluto's --jl-danger-* admonition) */
+    --pluto-rose-50: hsl(7, 60%, 96%);
+    --pluto-rose-100: hsl(7, 60%, 92%);
+    --pluto-rose-200: hsl(7, 50%, 84%);
+    --pluto-rose-300: hsl(7, 47%, 73%);
+    --pluto-rose-400: hsl(7, 60%, 56%);
+    --pluto-rose-500: hsl(7, 65%, 42%);
+    --pluto-rose-600: hsl(7, 70%, 28%);
+
+    /* ===== SEMANTIC COLOR SLOTS ========================================= */
+    /* These map the palette onto semantic roles. Override these (not the
+       palette itself) to rebrand. */
+
+    /* Surfaces */
+    --pluto-bg: white;
+    --pluto-bg-soft: var(--pluto-slate-50);
+    --pluto-bg-muted: var(--pluto-slate-100);
+    --pluto-surface: white;
+    --pluto-surface-raised: white;
+
+    /* Text */
+    --pluto-text: var(--pluto-slate-700);
+    --pluto-text-strong: var(--pluto-slate-900);
+    --pluto-text-muted: var(--pluto-slate-500);
+    --pluto-text-inverse: white;
+
+    /* Border / rule */
+    --pluto-border: rgba(0, 0, 0, 0.15);
+    --pluto-border-strong: rgba(0, 0, 0, 0.3);
+
+    /* Link */
+    --pluto-link: var(--pluto-slate-900);
+    --pluto-link-underline: rgba(0, 0, 0, 0.35);
+
+    /* Code */
+    --pluto-code-bg: hsla(46, 90%, 98%, 1);
+    --pluto-code-text: var(--pluto-slate-700);
+
+    /* Brand & semantic */
+    --pluto-primary: var(--pluto-indigo-400);
+    --pluto-primary-soft: var(--pluto-indigo-100);
+    --pluto-primary-strong: var(--pluto-indigo-600);
+    --pluto-primary-text: white;
+
+    --pluto-success: var(--pluto-sage-300);
+    --pluto-success-soft: var(--pluto-sage-100);
+    --pluto-success-strong: var(--pluto-sage-500);
+    --pluto-success-text: white;
+
+    --pluto-info: var(--pluto-sky-300);
+    --pluto-info-soft: var(--pluto-sky-100);
+    --pluto-info-strong: var(--pluto-sky-500);
+    --pluto-info-text: white;
+
+    --pluto-warning: var(--pluto-sand-300);
+    --pluto-warning-soft: var(--pluto-sand-100);
+    --pluto-warning-strong: var(--pluto-sand-500);
+    --pluto-warning-text: var(--pluto-slate-900);
+
+    --pluto-danger: var(--pluto-rose-300);
+    --pluto-danger-soft: var(--pluto-rose-100);
+    --pluto-danger-strong: var(--pluto-rose-500);
+    --pluto-danger-text: white;
+
+    --pluto-neutral: var(--pluto-slate-500);
+    --pluto-neutral-soft: var(--pluto-slate-100);
+    --pluto-neutral-strong: var(--pluto-slate-700);
+    --pluto-neutral-text: white;
+
+    --pluto-light: var(--pluto-cream-100);
+    --pluto-light-soft: var(--pluto-cream-50);
+    --pluto-light-strong: var(--pluto-cream-300);
+    --pluto-light-text: var(--pluto-slate-900);
+
+    --pluto-dark: var(--pluto-slate-800);
+    --pluto-dark-soft: var(--pluto-slate-200);
+    --pluto-dark-strong: var(--pluto-slate-900);
+    --pluto-dark-text: white;
+
+    /* Focus ring */
+    --pluto-focus-ring: 0 0 0 3px var(--pluto-sky-200);
+
+    color-scheme: light dark;
+}
+
+/* ===== DARK THEME — automatic via media query ============================ */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-pluto-theme="light"]) {
+        --pluto-bg: hsl(0, 0%, 12%);
+        --pluto-bg-soft: hsl(0, 0%, 16%);
+        --pluto-bg-muted: hsl(0, 0%, 20%);
+        --pluto-surface: hsl(0, 0%, 16%);
+        --pluto-surface-raised: hsl(0, 0%, 20%);
+
+        --pluto-text: hsl(0, 0%, 77%);
+        --pluto-text-strong: hsl(0, 0%, 92%);
+        --pluto-text-muted: hsl(0, 0%, 60%);
+        --pluto-text-inverse: hsl(0, 0%, 12%);
+
+        --pluto-border: rgba(255, 255, 255, 0.15);
+        --pluto-border-strong: rgba(255, 255, 255, 0.3);
+
+        --pluto-link: hsl(0, 0%, 92%);
+        --pluto-link-underline: rgba(255, 255, 255, 0.4);
+
+        --pluto-code-bg: hsl(222, 16%, 19%);
+        --pluto-code-text: hsl(0, 0%, 90%);
+
+        /* Pluto darkens the cell-color of admonitions but keeps the accent
+           bright. We reverse text-color where appropriate. */
+        --pluto-primary: hsl(225, 56%, 60%);
+        --pluto-primary-soft: hsl(225, 30%, 25%);
+        --pluto-primary-strong: hsl(225, 70%, 70%);
+
+        --pluto-success: hsl(102, 30%, 50%);
+        --pluto-success-soft: hsl(102, 25%, 22%);
+        --pluto-success-strong: hsl(102, 40%, 65%);
+
+        --pluto-info: hsl(213, 50%, 60%);
+        --pluto-info-soft: hsl(213, 35%, 25%);
+        --pluto-info-strong: hsl(213, 60%, 75%);
+
+        --pluto-warning: hsl(54, 40%, 55%);
+        --pluto-warning-soft: hsl(54, 30%, 22%);
+        --pluto-warning-strong: hsl(54, 60%, 70%);
+        --pluto-warning-text: hsl(0, 0%, 12%);
+
+        --pluto-danger: hsl(7, 47%, 60%);
+        --pluto-danger-soft: hsl(7, 35%, 22%);
+        --pluto-danger-strong: hsl(7, 65%, 75%);
+
+        --pluto-neutral: hsl(0, 0%, 55%);
+        --pluto-neutral-soft: hsl(0, 0%, 22%);
+        --pluto-neutral-strong: hsl(0, 0%, 75%);
+
+        --pluto-light: hsl(0, 0%, 22%);
+        --pluto-light-soft: hsl(0, 0%, 16%);
+        --pluto-light-strong: hsl(0, 0%, 38%);
+        --pluto-light-text: hsl(0, 0%, 92%);
+
+        --pluto-dark: hsl(0, 0%, 8%);
+        --pluto-dark-soft: hsl(0, 0%, 16%);
+        --pluto-dark-strong: hsl(0, 0%, 4%);
+
+        --pluto-focus-ring: 0 0 0 3px hsl(213, 35%, 35%);
+    }
+}
+
+/* ===== DARK THEME — manual opt-in (wins over media query) ================ */
+:root[data-pluto-theme="dark"] {
+    --pluto-bg: hsl(0, 0%, 12%);
+    --pluto-bg-soft: hsl(0, 0%, 16%);
+    --pluto-bg-muted: hsl(0, 0%, 20%);
+    --pluto-surface: hsl(0, 0%, 16%);
+    --pluto-surface-raised: hsl(0, 0%, 20%);
+
+    --pluto-text: hsl(0, 0%, 77%);
+    --pluto-text-strong: hsl(0, 0%, 92%);
+    --pluto-text-muted: hsl(0, 0%, 60%);
+    --pluto-text-inverse: hsl(0, 0%, 12%);
+
+    --pluto-border: rgba(255, 255, 255, 0.15);
+    --pluto-border-strong: rgba(255, 255, 255, 0.3);
+
+    --pluto-link: hsl(0, 0%, 92%);
+    --pluto-link-underline: rgba(255, 255, 255, 0.4);
+
+    --pluto-code-bg: hsl(222, 16%, 19%);
+    --pluto-code-text: hsl(0, 0%, 90%);
+
+    --pluto-primary: hsl(225, 56%, 60%);
+    --pluto-primary-soft: hsl(225, 30%, 25%);
+    --pluto-primary-strong: hsl(225, 70%, 70%);
+
+    --pluto-success: hsl(102, 30%, 50%);
+    --pluto-success-soft: hsl(102, 25%, 22%);
+    --pluto-success-strong: hsl(102, 40%, 65%);
+
+    --pluto-info: hsl(213, 50%, 60%);
+    --pluto-info-soft: hsl(213, 35%, 25%);
+    --pluto-info-strong: hsl(213, 60%, 75%);
+
+    --pluto-warning: hsl(54, 40%, 55%);
+    --pluto-warning-soft: hsl(54, 30%, 22%);
+    --pluto-warning-strong: hsl(54, 60%, 70%);
+    --pluto-warning-text: hsl(0, 0%, 12%);
+
+    --pluto-danger: hsl(7, 47%, 60%);
+    --pluto-danger-soft: hsl(7, 35%, 22%);
+    --pluto-danger-strong: hsl(7, 65%, 75%);
+
+    --pluto-neutral: hsl(0, 0%, 55%);
+    --pluto-neutral-soft: hsl(0, 0%, 22%);
+    --pluto-neutral-strong: hsl(0, 0%, 75%);
+
+    --pluto-light: hsl(0, 0%, 22%);
+    --pluto-light-soft: hsl(0, 0%, 16%);
+    --pluto-light-strong: hsl(0, 0%, 38%);
+    --pluto-light-text: hsl(0, 0%, 92%);
+
+    --pluto-dark: hsl(0, 0%, 8%);
+    --pluto-dark-soft: hsl(0, 0%, 16%);
+    --pluto-dark-strong: hsl(0, 0%, 4%);
+
+    --pluto-focus-ring: 0 0 0 3px hsl(213, 35%, 35%);
+}

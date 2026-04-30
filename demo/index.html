@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Pluto Design System — components showcase</title>
+        <link rel="stylesheet" href="../pluto.css" />
+        <style>
+            /* Demo-only chrome — not part of the framework. */
+            .doc-section {
+                padding-block: var(--pluto-space-5);
+                border-bottom: 1px dashed var(--pluto-border);
+            }
+            .doc-section:last-of-type {
+                border-bottom: 0;
+            }
+            .swatch {
+                display: flex;
+                flex-direction: column;
+                gap: var(--pluto-space-1);
+                padding: var(--pluto-space-2);
+                border-radius: var(--pluto-radius-md);
+                background: var(--pluto-bg-soft);
+                font-family: var(--pluto-font-mono-roboto);
+                font-size: var(--pluto-fs-xs);
+            }
+            .swatch-chip {
+                height: 60px;
+                border-radius: var(--pluto-radius-sm);
+                border: 1px solid var(--pluto-border);
+            }
+            .demo-grid-cards {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                gap: var(--pluto-space-3);
+            }
+        </style>
+    </head>
+    <body>
+        <!-- ========== NAVBAR ========== -->
+        <nav class="navbar navbar-sticky">
+            <a class="navbar-brand" href="#"><span>🎈</span> <span>Pluto&nbsp;Design</span></a>
+            <ul class="navbar-nav">
+                <li><a class="nav-link active" href="#typography">Typography</a></li>
+                <li><a class="nav-link" href="#grid">Grid</a></li>
+                <li><a class="nav-link" href="#components">Components</a></li>
+                <li><a class="nav-link" href="#forms">Forms</a></li>
+                <li><a class="nav-link" href="#plutoui">PlutoUI</a></li>
+                <li><a class="nav-link" href="#utilities">Utilities</a></li>
+            </ul>
+            <span class="navbar-spacer"></span>
+            <div class="btn-group" role="group" aria-label="theme">
+                <button class="btn btn-sm" data-theme="light">Light</button>
+                <button class="btn btn-sm" data-theme="dark">Dark</button>
+                <button class="btn btn-sm" data-theme="auto">Auto</button>
+            </div>
+        </nav>
+
+        <!-- ========== HERO ========== -->
+        <header class="hero">
+            <div class="container">
+                <p class="badge badge-pill badge-info mb-3">v1 · MIT-licensed</p>
+                <h1 class="display-1">A reactive look for the open web.</h1>
+                <p class="lead mt-3">
+                    A general-purpose CSS framework — buttons, cards, grids, forms — styled in the Pluto.jl notebook aesthetic. Drop one
+                    file in, write semantic HTML, ship a beautiful page.
+                </p>
+                <div class="cluster justify-content-center mt-4">
+                    <a href="#components" class="btn btn-primary btn-lg">Browse components</a>
+                    <a href="../README.md" class="btn btn-outline-primary btn-lg">Read the docs</a>
+                </div>
+            </div>
+        </header>
+
+        <main class="container my-5">
+            <!-- ========== COLOR ========== -->
+            <section class="doc-section" id="colors">
+                <h2>Color palette</h2>
+                <p class="lead">Eight semantic slots, sourced from Pluto's admonition palette and warm welcome-page tones.</p>
+                <div class="row gy-3">
+                    <div class="col-6 col-md-3">
+                        <div class="swatch">
+                            <div class="swatch-chip" style="background: var(--pluto-primary)"></div>
+                            <strong>primary</strong> <span>--pluto-primary</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="swatch">
+                            <div class="swatch-chip" style="background: var(--pluto-success)"></div>
+                            <strong>success</strong> <span>--pluto-success</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="swatch">
+                            <div class="swatch-chip" style="background: var(--pluto-info)"></div>
+                            <strong>info</strong> <span>--pluto-info</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="swatch">
+                            <div class="swatch-chip" style="background: var(--pluto-warning)"></div>
+                            <strong>warning</strong> <span>--pluto-warning</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="swatch">
+                            <div class="swatch-chip" style="background: var(--pluto-danger)"></div>
+                            <strong>danger</strong> <span>--pluto-danger</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="swatch">
+                            <div class="swatch-chip" style="background: var(--pluto-neutral)"></div>
+                            <strong>neutral</strong> <span>--pluto-neutral</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="swatch">
+                            <div class="swatch-chip" style="background: var(--pluto-light)"></div>
+                            <strong>light</strong> <span>--pluto-light</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="swatch">
+                            <div class="swatch-chip" style="background: var(--pluto-dark)"></div>
+                            <strong>dark</strong> <span>--pluto-dark</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== TYPOGRAPHY ========== -->
+            <section class="doc-section" id="typography">
+                <h2>Typography</h2>
+                <p class="lead">Vollkorn for headings, Alegreya Sans for body, JuliaMono for code.</p>
+
+                <h1>Heading h1</h1>
+                <h2>Heading h2</h2>
+                <h3>Heading h3</h3>
+                <h4>Heading h4</h4>
+                <h5>Heading h5</h5>
+                <h6>Heading h6</h6>
+
+                <p>
+                    A paragraph with <em>italic</em>, <strong>bold</strong>, <a href="#">links</a>, inline <code>x = sum(1:100)</code>,
+                    <kbd>Cmd</kbd>+<kbd>Enter</kbd>, and <mark>highlighted</mark> bits. The body text uses Alegreya Sans for warmth — a font that
+                    works on screen as well as in print.
+                </p>
+
+                <p class="lead">A lead paragraph stands a little larger and a little softer than the body around it.</p>
+
+                <blockquote>
+                    "There are two ways of constructing a software design: one is to make it so simple that there are obviously no deficiencies,
+                    and the other is to make it so complicated that there are no obvious deficiencies."
+                    <cite>C.A.R. Hoare</cite>
+                </blockquote>
+
+                <pre><code>function fib(n::Integer)
+    n &lt; 2 ? n : fib(n - 1) + fib(n - 2)
+end
+
+fib(10)  # =&gt; 55</code></pre>
+
+                <details>
+                    <summary>What's a Pluto notebook again?</summary>
+                    <p>A reactive Julia notebook: change one cell and every dependent cell updates automatically.</p>
+                </details>
+            </section>
+
+            <!-- ========== GRID ========== -->
+            <section class="doc-section" id="grid">
+                <h2>Grid</h2>
+                <p class="lead">12-column flex grid with sm / md / lg / xl breakpoints. Same surface as Bootstrap.</p>
+
+                <div class="row gy-2">
+                    <div class="col-12 col-md-6 col-lg-4"><div class="bg-soft p-3 rounded">col-12 · col-md-6 · col-lg-4</div></div>
+                    <div class="col-12 col-md-6 col-lg-4"><div class="bg-soft p-3 rounded">col-12 · col-md-6 · col-lg-4</div></div>
+                    <div class="col-12 col-md-12 col-lg-4"><div class="bg-soft p-3 rounded">col-12 · col-md-12 · col-lg-4</div></div>
+                </div>
+
+                <div class="row gy-2 mt-3">
+                    <div class="col"><div class="bg-cream p-3 rounded">col</div></div>
+                    <div class="col"><div class="bg-cream p-3 rounded">col</div></div>
+                    <div class="col-auto"><div class="bg-cream p-3 rounded">col-auto</div></div>
+                </div>
+            </section>
+
+            <!-- ========== BUTTONS ========== -->
+            <section class="doc-section" id="components">
+                <h2>Buttons</h2>
+                <div class="cluster">
+                    <button class="btn">Default</button>
+                    <button class="btn btn-primary">Primary</button>
+                    <button class="btn btn-success">Success</button>
+                    <button class="btn btn-info">Info</button>
+                    <button class="btn btn-warning">Warning</button>
+                    <button class="btn btn-danger">Danger</button>
+                    <button class="btn btn-dark">Dark</button>
+                    <button class="btn btn-light">Light</button>
+                </div>
+
+                <div class="cluster mt-3">
+                    <button class="btn btn-outline-primary">Outline primary</button>
+                    <button class="btn btn-outline-success">Outline success</button>
+                    <button class="btn btn-outline-danger">Outline danger</button>
+                    <button class="btn btn-ghost">Ghost</button>
+                    <button class="btn btn-link">Link</button>
+                    <button class="btn btn-primary" disabled>Disabled</button>
+                </div>
+
+                <div class="cluster mt-3">
+                    <button class="btn btn-primary btn-sm">Small</button>
+                    <button class="btn btn-primary">Default</button>
+                    <button class="btn btn-primary btn-lg">Large</button>
+                </div>
+
+                <div class="mt-3">
+                    <div class="btn-group">
+                        <button class="btn">Left</button>
+                        <button class="btn">Middle</button>
+                        <button class="btn">Right</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== ALERTS ========== -->
+            <section class="doc-section">
+                <h2>Alerts</h2>
+                <div class="alert">
+                    <span class="alert-title">Default</span>
+                    <p>A neutral callout for context. Pluto's "message" admonition.</p>
+                </div>
+                <div class="alert alert-info">
+                    <span class="alert-title">Info</span>
+                    <p>A friendly side note — perfect for tips and "did you know"-style content.</p>
+                </div>
+                <div class="alert alert-success">
+                    <span class="alert-title">Success</span>
+                    <p>Things went well.</p>
+                </div>
+                <div class="alert alert-warning">
+                    <span class="alert-title">Warning</span>
+                    <p>Tread carefully — caveats live here.</p>
+                </div>
+                <div class="alert alert-danger">
+                    <span class="alert-title">Danger</span>
+                    <p>For things that <strong>break</strong> if ignored: irreversible actions, security issues, etc.</p>
+                </div>
+                <div class="alert alert-hint">
+                    <span class="alert-title">Hover for hint</span>
+                    <p>The text is blurred until you hover or focus the alert. Perfect for tutorial spoilers.</p>
+                </div>
+            </section>
+
+            <!-- ========== BADGES ========== -->
+            <section class="doc-section">
+                <h2>Badges</h2>
+                <div class="cluster">
+                    <span class="badge">default</span>
+                    <span class="badge badge-primary">primary</span>
+                    <span class="badge badge-success">success</span>
+                    <span class="badge badge-info">info</span>
+                    <span class="badge badge-warning">warning</span>
+                    <span class="badge badge-danger">danger</span>
+                    <span class="badge badge-dark">dark</span>
+                    <span class="badge badge-light">light</span>
+                </div>
+                <div class="cluster mt-3">
+                    <span class="badge badge-pill badge-primary">pill</span>
+                    <span class="badge badge-pill badge-success">running</span>
+                    <span class="badge badge-pill badge-warning">stale</span>
+                </div>
+            </section>
+
+            <!-- ========== CARDS ========== -->
+            <section class="doc-section">
+                <h2>Cards</h2>
+                <div class="demo-grid-cards">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Plain card</h3>
+                            <p class="card-text">A simple card — title, text, no chrome.</p>
+                            <button class="btn btn-primary btn-sm">Action</button>
+                        </div>
+                    </div>
+                    <div class="card card-info">
+                        <div class="card-header">Featured</div>
+                        <div class="card-body">
+                            <h3 class="card-title">Card with header</h3>
+                            <p class="card-subtitle">A subtitle for context</p>
+                            <p class="card-text">Headers and footers gently tint to separate them from the body.</p>
+                        </div>
+                        <div class="card-footer">last updated 2 days ago</div>
+                    </div>
+                    <a class="card card-success" href="#">
+                        <div
+                            class="card-img-top"
+                            style="background: linear-gradient(135deg, var(--pluto-sage-200), var(--pluto-sky-200));"
+                        ></div>
+                        <div class="card-body">
+                            <h3 class="card-title">Linked card</h3>
+                            <p class="card-text">The whole card is the link.</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- ========== TABLES ========== -->
+            <section class="doc-section">
+                <h2>Tables</h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-mono">
+                        <thead>
+                            <tr>
+                                <th>Variable</th>
+                                <th>Type</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>x</td>
+                                <td>Int64</td>
+                                <td>42</td>
+                            </tr>
+                            <tr>
+                                <td>greeting</td>
+                                <td>String</td>
+                                <td>"hello"</td>
+                            </tr>
+                            <tr>
+                                <td>v</td>
+                                <td>Vector{Float64}</td>
+                                <td>[1.0, 2.5, 3.7]</td>
+                            </tr>
+                            <tr>
+                                <td>π</td>
+                                <td>Irrational{:π}</td>
+                                <td>3.14159...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ========== LIST GROUPS ========== -->
+            <section class="doc-section">
+                <h2>List groups</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-group">
+                            <li class="list-group-item">Reactive evaluation</li>
+                            <li class="list-group-item active">Live document</li>
+                            <li class="list-group-item">Web-native UI</li>
+                            <li class="list-group-item disabled">Coming soon</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="list-group">
+                            <a class="list-group-item" href="#">Get started</a>
+                            <a class="list-group-item" href="#">Tutorials</a>
+                            <a class="list-group-item" href="#">API reference</a>
+                            <a class="list-group-item" href="#">Source on GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== FORMS ========== -->
+            <section class="doc-section" id="forms">
+                <h2>Forms</h2>
+                <form class="row gy-3">
+                    <div class="col-md-6">
+                        <label class="form-label" for="email">Email</label>
+                        <input class="form-control" id="email" type="email" placeholder="you@example.com" />
+                        <p class="form-text">We'll never share your email.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="kernel">Kernel</label>
+                        <select class="form-select" id="kernel">
+                            <option>Julia 1.10</option>
+                            <option>Julia 1.11</option>
+                            <option>Julia nightly</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="notebook">Notebook URL</label>
+                        <div class="input-group">
+                            <span class="input-group-text">https://</span>
+                            <input class="form-control" id="notebook" type="text" placeholder="featured.plutojl.org/sample.jl" />
+                            <button class="btn btn-primary" type="button">Open</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="notes">Notes</label>
+                        <textarea class="form-control" id="notes" rows="3" placeholder="Anything to add?"></textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Options</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="auto-run" checked />
+                            <label class="form-check-label" for="auto-run">Run cells automatically</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="sandbox" />
+                            <label class="form-check-label" for="sandbox">Open in sandbox</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="theme" id="t-l" />
+                            <label class="form-check-label" for="t-l">Light theme</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="theme" id="t-d" />
+                            <label class="form-check-label" for="t-d">Dark theme</label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="ok-input">Validation states</label>
+                        <input class="form-control is-valid" id="ok-input" type="text" value="this looks good" />
+                    </div>
+                    <div class="col-12">
+                        <input class="form-control is-invalid" type="text" placeholder="this needs fixing" />
+                        <div class="invalid-feedback">Looks empty — please add something.</div>
+                    </div>
+                    <div class="col-12 cluster">
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                        <button class="btn btn-ghost" type="reset">Reset</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- ========== BREADCRUMB ========== -->
+            <section class="doc-section">
+                <h2>Breadcrumbs</h2>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Tutorials</a></li>
+                        <li class="breadcrumb-item active">Reactive plots</li>
+                    </ol>
+                </nav>
+            </section>
+
+            <!-- ========== PAGINATION ========== -->
+            <section class="doc-section">
+                <h2>Pagination</h2>
+                <ul class="pagination">
+                    <li class="page-item disabled"><a class="page-link">‹ Prev</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next ›</a></li>
+                </ul>
+            </section>
+
+            <!-- ========== PROGRESS / SPINNER ========== -->
+            <section class="doc-section">
+                <h2>Progress &amp; spinners</h2>
+                <div class="progress mb-2">
+                    <div class="progress-bar" style="width: 35%">35%</div>
+                </div>
+                <div class="progress progress-success mb-2">
+                    <div class="progress-bar" style="width: 65%">65%</div>
+                </div>
+                <div class="progress progress-warning mb-3">
+                    <div class="progress-bar" style="width: 85%">85%</div>
+                </div>
+                <div class="progress-indeterminate mb-3"></div>
+                <div class="cluster">
+                    <span class="spinner"></span><span class="font-mono fs-sm">running…</span>
+                    <span class="spinner-dot"></span><span class="font-mono fs-sm">queued</span>
+                </div>
+            </section>
+
+            <!-- ========== NAV TABS / PILLS ========== -->
+            <section class="doc-section">
+                <h2>Tabs &amp; pills</h2>
+                <ul class="nav nav-tabs" role="tablist">
+                    <li><a class="nav-link active" href="#">Inputs</a></li>
+                    <li><a class="nav-link" href="#">Outputs</a></li>
+                    <li><a class="nav-link" href="#">Logs</a></li>
+                </ul>
+                <p class="mt-3">tab body</p>
+
+                <ul class="nav nav-pills mt-3">
+                    <li><a class="nav-link active" href="#">All</a></li>
+                    <li><a class="nav-link" href="#">Featured</a></li>
+                    <li><a class="nav-link" href="#">Recent</a></li>
+                </ul>
+            </section>
+
+            <!-- ========== MODAL ========== -->
+            <section class="doc-section">
+                <h2>Modal</h2>
+                <button class="btn btn-primary" id="open-modal">Open modal</button>
+
+                <div class="modal" id="my-modal" role="dialog" aria-modal="true">
+                    <div class="modal-dialog">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Save changes?</h4>
+                            <button class="btn btn-sm btn-ghost" id="close-modal" aria-label="Close">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>You have unsaved edits in this notebook. Save them before closing?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-ghost" id="close-modal-2">Discard</button>
+                            <button class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== TOOLTIP ========== -->
+            <section class="doc-section">
+                <h2>Tooltips</h2>
+                <p>
+                    Hover over <button class="btn btn-ghost" data-tooltip="Tooltip via [data-tooltip]">this button</button> or
+                    <a href="#" data-tooltip="Also works on links">this link</a> to see the tooltip.
+                </p>
+            </section>
+
+            <!-- ========== CODE-CELL (signature Pluto) ========== -->
+            <section class="doc-section">
+                <h2>Code cells <span class="badge badge-info">Pluto signature</span></h2>
+                <p>Optional component for notebook-style content: input on top, output below.</p>
+
+                <article class="code-cell">
+                    <pre class="code-cell-input">x = [1, 2, 3, 4, 5]</pre>
+                    <div class="code-cell-output">
+                        <span class="code-cell-assignee">x</span>
+                        <code>5-element Vector{Int64}: [1, 2, 3, 4, 5]</code>
+                    </div>
+                </article>
+
+                <article class="code-cell">
+                    <pre class="code-cell-input">md"Reactive **markdown** cell"</pre>
+                    <div class="code-cell-output">
+                        <p>Reactive <strong>markdown</strong> cell.</p>
+                    </div>
+                </article>
+
+                <article class="code-cell is-error">
+                    <pre class="code-cell-input">1 / "two"</pre>
+                    <div class="code-cell-output">
+                        <strong>MethodError:</strong> no method matching <code>/(::Int64, ::String)</code>
+                    </div>
+                </article>
+            </section>
+
+            <!-- ========== PLUTOUI WIDGETS ========== -->
+            <section class="doc-section" id="plutoui">
+                <h2>PlutoUI widgets</h2>
+                <p class="lead">Components ported from <a href="https://github.com/JuliaPluto/PlutoUI.jl">PlutoUI.jl</a> — switch, range, multi-checkbox, notebook card, table-of-contents, and the layout aside.</p>
+
+                <h3>Switch</h3>
+                <div class="cluster">
+                    <input class="switch switch-sm" type="checkbox" />
+                    <input class="switch" type="checkbox" checked />
+                    <input class="switch switch-lg" type="checkbox" />
+                    <input class="switch switch-primary" type="checkbox" checked />
+                    <input class="switch switch-info" type="checkbox" checked />
+                    <input class="switch switch-warning" type="checkbox" checked />
+                    <input class="switch switch-danger" type="checkbox" checked />
+                    <input class="switch" type="checkbox" disabled />
+                </div>
+
+                <h3 class="mt-4">Range</h3>
+                <div class="row gy-3">
+                    <div class="col-md-6">
+                        <label class="form-label" for="r1">Volume</label>
+                        <input class="range" id="r1" type="range" min="0" max="100" value="40" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="r2">Brightness</label>
+                        <input class="range" id="r2" type="range" min="0" max="100" value="80" />
+                    </div>
+                </div>
+
+                <h3 class="mt-4">Check-list (multi-checkbox)</h3>
+                <ul class="check-list check-list-column" data-check-group>
+                    <li class="check-list-all">
+                        <span class="form-check">
+                            <input class="form-check-input" type="checkbox" id="all" data-check-all />
+                            <label class="form-check-label" for="all">Select all</label>
+                        </span>
+                    </li>
+                    <li class="form-check">
+                        <input class="form-check-input" type="checkbox" id="a1" checked />
+                        <label class="form-check-label" for="a1">🐰 rabbit</label>
+                    </li>
+                    <li class="form-check">
+                        <input class="form-check-input" type="checkbox" id="a2" />
+                        <label class="form-check-label" for="a2">🐱 cat</label>
+                    </li>
+                    <li class="form-check">
+                        <input class="form-check-input" type="checkbox" id="a3" checked />
+                        <label class="form-check-label" for="a3">🐝 bee</label>
+                    </li>
+                    <li class="form-check">
+                        <input class="form-check-input" type="checkbox" id="a4" />
+                        <label class="form-check-label" for="a4">🐘 elephant</label>
+                    </li>
+                </ul>
+
+                <h3 class="mt-4">Notebook cards</h3>
+                <a class="notebook-card" href="#">
+                    <div class="notebook-card-thumb">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--pluto-rose-200), var(--pluto-cream-200));"></div>
+                    </div>
+                    <div class="notebook-card-body">
+                        <div>
+                            <h3 class="notebook-card-title">Reactive plots in Pluto</h3>
+                            <p>Build interactive plots that update as you drag a slider — no callbacks, no event wiring.</p>
+                        </div>
+                        <div class="notebook-card-nav"><span class="notebook-card-cta">Open notebook →</span></div>
+                    </div>
+                </a>
+
+                <a class="notebook-card notebook-card-info" href="#">
+                    <div class="notebook-card-thumb">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--pluto-sky-200), var(--pluto-sky-100));"></div>
+                    </div>
+                    <div class="notebook-card-body">
+                        <div>
+                            <h3 class="notebook-card-title">Differential equations</h3>
+                            <p>Combine DifferentialEquations.jl with bonds for live parameter exploration.</p>
+                        </div>
+                        <div class="notebook-card-nav"><span class="notebook-card-cta">Open notebook →</span></div>
+                    </div>
+                </a>
+
+                <h3 class="mt-4">Table of contents (sticky)</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <nav class="toc">
+                            <h4 class="toc-header">📑 Contents</h4>
+                            <div class="toc-list">
+                                <a class="toc-h1" href="#typography">Typography</a>
+                                <a class="toc-h2" href="#grid">Grid</a>
+                                <a class="toc-h2 active" href="#components">Components</a>
+                                <a class="toc-h3" href="#forms">Forms</a>
+                                <a class="toc-h3" href="#plutoui">PlutoUI</a>
+                                <a class="toc-h2" href="#utilities">Utilities</a>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col-md-8">
+                        <p>The TOC works as an inline list or a sticky aside. Add <code>.toc-aside</code> to make it stick to the viewport.</p>
+                        <pre><code>&lt;nav class="toc toc-aside"&gt;
+    &lt;h4 class="toc-header"&gt;Contents&lt;/h4&gt;
+    &lt;a class="toc-h1" href="#a"&gt;Section A&lt;/a&gt;
+    &lt;a class="toc-h2" href="#a1"&gt;Subsection&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+                    </div>
+                </div>
+
+                <h3 class="mt-4">Layout: aside (sidenote)</h3>
+                <div class="layout-aside-host">
+                    <p>
+                        Asides are sidenotes that float to the right of the main column on wide viewports and flow inline below 1030px.
+                        On a narrow window, this paragraph and the aside box stack vertically — try resizing the page.
+                    </p>
+                    <aside class="layout-aside">
+                        <strong>Sidenote.</strong> The aside uses <code>position: absolute</code> at large widths and inline flow on small ones.
+                        Wrap it in <code>.layout-aside-host</code> so it anchors to the right place.
+                    </aside>
+                    <p>
+                        On large screens the aside lives in the negative-space margin to the right of the main column, similar to footnotes
+                        in Tufte-style typography or marginalia in academic prose.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ========== UTILITIES ========== -->
+            <section class="doc-section" id="utilities">
+                <h2>Utilities</h2>
+                <p class="lead">A small atomic-utility set: spacing, display, flex, text, color, border, shadow, position, sizing.</p>
+
+                <h3>Spacing</h3>
+                <div class="cluster">
+                    <span class="badge bg-soft p-1">.p-1</span>
+                    <span class="badge bg-soft p-2">.p-2</span>
+                    <span class="badge bg-soft p-3">.p-3</span>
+                    <span class="badge bg-soft p-4">.p-4</span>
+                </div>
+
+                <h3 class="mt-4">Surfaces</h3>
+                <div class="row gy-3">
+                    <div class="col-md-4"><div class="p-3 rounded shadow-sm border">.shadow-sm .border</div></div>
+                    <div class="col-md-4"><div class="p-3 rounded shadow">.shadow</div></div>
+                    <div class="col-md-4"><div class="p-3 rounded shadow-lg">.shadow-lg</div></div>
+                </div>
+
+                <h3 class="mt-4">Text</h3>
+                <p class="text-primary">.text-primary</p>
+                <p class="text-success">.text-success</p>
+                <p class="text-info">.text-info</p>
+                <p class="text-warning">.text-warning</p>
+                <p class="text-danger">.text-danger</p>
+                <p class="text-muted">.text-muted</p>
+            </section>
+        </main>
+
+        <footer class="container py-5 text-center text-muted">
+            <hr />
+            <p class="mt-3">
+                <span class="font-serif fs-lg">Pluto Design System</span> · built from
+                <a href="https://plutojl.org/">Pluto.jl</a>'s frontend stylesheet.
+            </p>
+        </footer>
+
+        <script>
+            const root = document.documentElement
+            const setTheme = (mode) => {
+                if (mode === "auto") root.removeAttribute("data-pluto-theme")
+                else root.setAttribute("data-pluto-theme", mode)
+                localStorage.setItem("pluto-demo-theme", mode)
+            }
+            for (const btn of document.querySelectorAll("[data-theme]")) {
+                btn.addEventListener("click", () => setTheme(btn.dataset.theme))
+            }
+            const saved = localStorage.getItem("pluto-demo-theme")
+            if (saved) setTheme(saved)
+
+            // Modal
+            const modal = document.getElementById("my-modal")
+            document.getElementById("open-modal").addEventListener("click", () => modal.classList.add("show"))
+            document.getElementById("close-modal").addEventListener("click", () => modal.classList.remove("show"))
+            document.getElementById("close-modal-2").addEventListener("click", () => modal.classList.remove("show"))
+            modal.addEventListener("click", (e) => {
+                if (e.target === modal) modal.classList.remove("show")
+            })
+
+            // Placeholder anchors (`href="#"`) shouldn't scroll the page back to the top.
+            // We only intercept those — real anchors like `href="#typography"` keep working.
+            document.addEventListener("click", (e) => {
+                const a = e.target.closest('a[href="#"]')
+                if (a) e.preventDefault()
+            })
+
+            // Check-list: wire up "Select all" within every [data-check-group].
+            for (const group of document.querySelectorAll("[data-check-group]")) {
+                const master = group.querySelector("[data-check-all]")
+                if (!master) continue
+                const items = group.querySelectorAll('input[type="checkbox"]:not([data-check-all])')
+
+                const sync = () => {
+                    const total = items.length
+                    const checked = [...items].filter((c) => c.checked).length
+                    master.checked = total > 0 && checked === total
+                    master.indeterminate = checked > 0 && checked < total
+                }
+                master.addEventListener("change", () => {
+                    items.forEach((c) => (c.checked = master.checked))
+                    master.indeterminate = false
+                })
+                items.forEach((c) => c.addEventListener("change", sync))
+                sync()
+            }
+
+            // Demo: nav-tabs / nav-pills click → toggle .active among siblings.
+            for (const list of document.querySelectorAll(".nav-tabs, .nav-pills")) {
+                list.addEventListener("click", (e) => {
+                    const link = e.target.closest(".nav-link")
+                    if (!link || !list.contains(link)) return
+                    list.querySelectorAll(".nav-link.active").forEach((l) => l.classList.remove("active"))
+                    link.classList.add("active")
+                })
+            }
+
+            // Demo: pagination click → toggle .active among page-items.
+            for (const pag of document.querySelectorAll(".pagination")) {
+                pag.addEventListener("click", (e) => {
+                    const item = e.target.closest(".page-item")
+                    if (!item || item.classList.contains("disabled")) return
+                    pag.querySelectorAll(".page-item.active").forEach((i) => i.classList.remove("active"))
+                    item.classList.add("active")
+                })
+            }
+        </script>
+    </body>
+</html>

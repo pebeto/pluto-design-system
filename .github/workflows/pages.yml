@@ -1,0 +1,71 @@
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify sources
+        run: |
+          set -euo pipefail
+          test -f pluto.css
+          test -f demo/index.html
+          test -d styles
+          for f in $(grep -oE '@import url\("[^"]+"\)' pluto.css | sed -E 's/@import url\("([^"]+)"\)/\1/'); do
+            test -f "$f" || { echo "Missing imported CSS: $f"; exit 1; }
+          done
+
+      - name: Assemble site
+        run: |
+          set -euo pipefail
+          rm -rf dist
+          mkdir -p dist
+          cp pluto.css dist/
+          cp -r styles dist/
+          cp -r demo dist/
+          cat > dist/index.html <<'HTML'
+          <!doctype html>
+          <html lang="en">
+            <head>
+              <meta charset="utf-8" />
+              <title>Pluto Design System</title>
+              <meta http-equiv="refresh" content="0; url=./demo/" />
+              <link rel="canonical" href="./demo/" />
+            </head>
+            <body>
+              <p>Redirecting to <a href="./demo/">the demo</a>…</p>
+            </body>
+          </html>
+          HTML
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,76 @@
+/* =====================================================================
+ * Pluto Design System — Web fonts
+ *
+ * Loaded straight from jsdelivr / fontsource (matches Pluto's own fonts).
+ * If you self-host, just rewrite these URLs.
+ * ===================================================================== */
+
+/* Vollkorn — used for headings */
+@font-face {
+    font-family: Vollkorn;
+    src: url("https://cdn.jsdelivr.net/gh/fonsp/Vollkorn-Typeface@1/fonts/woff2/Vollkorn-SemiBold.woff2") format("woff2");
+    font-display: swap;
+    font-weight: 600;
+}
+@font-face {
+    font-family: Vollkorn;
+    font-style: italic;
+    src: url("https://cdn.jsdelivr.net/gh/fonsp/Vollkorn-Typeface@1/fonts/woff2/Vollkorn-SemiBoldItalic.woff2") format("woff2");
+    font-display: swap;
+    font-weight: 600;
+}
+@font-face {
+    font-family: Vollkorn;
+    src: url("https://cdn.jsdelivr.net/gh/fonsp/Vollkorn-Typeface@1/fonts/woff2/Vollkorn-Bold.woff2") format("woff2");
+    font-display: swap;
+    font-weight: 700;
+}
+@font-face {
+    font-family: Vollkorn;
+    font-style: italic;
+    src: url("https://cdn.jsdelivr.net/gh/fonsp/Vollkorn-Typeface@1/fonts/woff2/Vollkorn-BoldItalic.woff2") format("woff2");
+    font-display: swap;
+    font-weight: 700;
+}
+
+/* Alegreya Sans — used for body text */
+@import url("https://cdn.jsdelivr.net/npm/@fontsource/alegreya-sans@5.0.12/400.css");
+@import url("https://cdn.jsdelivr.net/npm/@fontsource/alegreya-sans@5.0.12/400-italic.css");
+@import url("https://cdn.jsdelivr.net/npm/@fontsource/alegreya-sans@5.0.12/500.css");
+@import url("https://cdn.jsdelivr.net/npm/@fontsource/alegreya-sans@5.0.12/700.css");
+
+/* Roboto Mono — used for UI labels */
+@import url("https://cdn.jsdelivr.net/npm/@fontsource/roboto-mono@4.4.5/400.css");
+@import url("https://cdn.jsdelivr.net/npm/@fontsource/roboto-mono@4.4.5/500.css");
+@import url("https://cdn.jsdelivr.net/npm/@fontsource/roboto-mono@4.4.5/700.css");
+
+/* JuliaMono — used for code */
+@font-face {
+    font-family: JuliaMono;
+    src: url("https://cdn.jsdelivr.net/gh/cormullion/juliamono@0.062/webfonts/JuliaMono-RegularLatin.woff2") format("woff2");
+    font-display: swap;
+    font-weight: 400;
+    unicode-range: U+00-7F;
+}
+@font-face {
+    font-family: JuliaMono;
+    src: url("https://cdn.jsdelivr.net/gh/cormullion/juliamono@0.062/webfonts/JuliaMono-BoldLatin.woff2") format("woff2");
+    font-display: swap;
+    font-weight: 700;
+    unicode-range: U+00-7F;
+}
+@font-face {
+    font-family: JuliaMono;
+    src: url("https://cdn.jsdelivr.net/gh/cormullion/juliamono@0.062/webfonts/JuliaMono-Regular.woff2") format("woff2");
+    font-display: swap;
+    font-weight: 400;
+}
+@font-face {
+    font-family: JuliaMono;
+    src: url("https://cdn.jsdelivr.net/gh/cormullion/juliamono@0.062/webfonts/JuliaMono-Bold.woff2") format("woff2");
+    font-display: swap;
+    font-weight: 700;
+}
+
+/* Inter — used for chrome/UI */
+@import url("https://cdn.jsdelivr.net/npm/inter-ui@3.19.3/inter-latin.css");

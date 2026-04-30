@@ -1,0 +1,37 @@
+/* =====================================================================
+ * Pluto Design System
+ *
+ * A general-purpose CSS framework — Bootstrap-shaped surface
+ * (`.btn`, `.card`, `.alert`, `.row` / `.col-md-6`, utilities) — built
+ * with the visual language of Pluto.jl: Vollkorn for headings, Alegreya
+ * Sans for body, JuliaMono for code, soft warm pastels for the
+ * semantic palette.
+ *
+ * Drop the file in, write semantic HTML, get a notebook-grade UI.
+ *
+ *     <link rel="stylesheet" href="design_system/pluto.css">
+ *     <body>
+ *         <main class="container">
+ *             <h1>Hello, Pluto</h1>
+ *             <button class="btn btn-primary">Run</button>
+ *             <div class="alert alert-info">
+ *                 <span class="alert-title">Note</span>
+ *                 Reactive notebooks for the web.
+ *             </div>
+ *         </main>
+ *     </body>
+ *
+ * Theming: light is default, `prefers-color-scheme: dark` flips
+ * automatically. Force a theme with `<html data-pluto-theme="dark">`.
+ *
+ * License: MIT (matches Pluto.jl).
+ * ===================================================================== */
+
+@import url("./styles/fonts.css");
+@import url("./styles/tokens.css");
+@import url("./styles/reset.css");
+@import url("./styles/typography.css");
+@import url("./styles/grid.css");
+@import url("./styles/components.css");
+@import url("./styles/utilities.css");
+@import url("./styles/responsive.css");
