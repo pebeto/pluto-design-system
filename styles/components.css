@@ -402,6 +402,143 @@ textarea.form-control {
 }
 
 /* =====================================================================
+ * 2b. DROPDOWNS  (CSS-only, built on <details>/<summary>)
+ *
+ *     <details class="dropdown">
+ *         <summary class="dropdown-toggle">Choose</summary>
+ *         <ul class="dropdown-menu">
+ *             <li><a class="dropdown-item" href="#">Option A</a></li>
+ *             <li><a class="dropdown-item active" href="#">Option B</a></li>
+ *             <li><hr class="dropdown-divider" /></li>
+ *             <li><a class="dropdown-item disabled" href="#">Option C</a></li>
+ *         </ul>
+ *     </details>
+ * ===================================================================== */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+}
+
+.dropdown > .dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    margin: 0;
+    padding: 0.5em 2.25em 0.5em 0.75em;
+    border: var(--pluto-bw-2) solid var(--pluto-border);
+    border-radius: var(--pluto-radius-sm);
+    background-color: var(--pluto-bg);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='%23555' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 0.75em center;
+    background-size: 16px 12px;
+    font-family: var(--pluto-font-mono-roboto);
+    font-size: var(--pluto-fs-sm);
+    font-weight: var(--pluto-fw-regular);
+    line-height: 1.4;
+    color: var(--pluto-text);
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+    transition:
+        border-color var(--pluto-transition),
+        box-shadow var(--pluto-transition),
+        background-color var(--pluto-transition);
+}
+.dropdown > .dropdown-toggle::-webkit-details-marker {
+    display: none;
+}
+.dropdown > .dropdown-toggle::marker {
+    content: "";
+}
+.dropdown > .dropdown-toggle:hover {
+    border-color: var(--pluto-text-muted);
+    color: var(--pluto-text-strong);
+    background-color: var(--pluto-bg);
+}
+
+.dropdown[open] > .dropdown-toggle {
+    border-color: var(--pluto-info);
+    box-shadow: 0 0 0 3px var(--pluto-info-soft);
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
+}
+
+.dropdown > .dropdown-menu {
+    position: absolute;
+    inset-block-start: 100%;
+    inset-inline-start: 0;
+    z-index: var(--pluto-z-dropdown);
+    min-width: 100%;
+    margin: -2px 0 0;
+    padding: var(--pluto-space-1) 0;
+    list-style: none;
+    background-color: var(--pluto-bg);
+    border: var(--pluto-bw-2) solid var(--pluto-info);
+    border-end-start-radius: var(--pluto-radius-sm);
+    border-end-end-radius: var(--pluto-radius-sm);
+    box-shadow: var(--pluto-shadow);
+}
+
+.dropdown-menu-end {
+    inset-inline-start: auto;
+    inset-inline-end: 0;
+}
+
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 0.45em 0.9em;
+    font-family: var(--pluto-font-base);
+    font-size: var(--pluto-fs-sm);
+    color: var(--pluto-text);
+    text-align: start;
+    text-decoration: none;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    transition:
+        background-color var(--pluto-transition),
+        color var(--pluto-transition);
+}
+.dropdown-item:hover,
+.dropdown-item:focus-visible {
+    background-color: var(--pluto-bg-soft);
+    color: var(--pluto-text-strong);
+}
+.dropdown-item.active {
+    background-color: var(--pluto-primary);
+    color: var(--pluto-primary-text);
+}
+.dropdown-item.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.dropdown-divider {
+    height: 0;
+    margin: var(--pluto-space-1) 0;
+    border: 0;
+    border-block-start: var(--pluto-bw-1) solid var(--pluto-border);
+}
+
+.dropdown-header {
+    padding: 0.45em 0.9em;
+    margin: 0;
+    font-family: var(--pluto-font-ui);
+    font-size: var(--pluto-fs-xs);
+    font-weight: var(--pluto-fw-bold);
+    color: var(--pluto-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* =====================================================================
  * 3. ALERTS  (Pluto's admonitions, generalized)
  * ===================================================================== */
 

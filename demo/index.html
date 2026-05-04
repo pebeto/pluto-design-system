@@ -429,6 +429,48 @@ fib(10)  # =&gt; 55</code></pre>
                 </form>
             </section>
 
+            <!-- ========== DROPDOWNS ========== -->
+            <section class="doc-section" id="dropdowns">
+                <h2>Dropdowns</h2>
+                <p class="lead">Pure-CSS disclosure menus, no JS. Click the trigger to expand.</p>
+
+                <div class="cluster" style="align-items: flex-start; gap: var(--pluto-space-3)">
+                    <details class="dropdown">
+                        <summary class="dropdown-toggle">Kernel: Julia 1.10</summary>
+                        <ul class="dropdown-menu">
+                            <li><h6 class="dropdown-header">Stable</h6></li>
+                            <li><a class="dropdown-item active" href="#">Julia 1.10</a></li>
+                            <li><a class="dropdown-item" href="#">Julia 1.11</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><h6 class="dropdown-header">Pre-release</h6></li>
+                            <li><a class="dropdown-item" href="#">Julia nightly</a></li>
+                            <li><a class="dropdown-item disabled" href="#">Julia 2.0 (soon)</a></li>
+                        </ul>
+                    </details>
+
+                    <details class="dropdown">
+                        <summary class="dropdown-toggle">Actions</summary>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Run all cells</a></li>
+                            <li><a class="dropdown-item" href="#">Restart &amp; run</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item" href="#">Export HTML</a></li>
+                            <li><a class="dropdown-item" href="#">Export PDF</a></li>
+                        </ul>
+                    </details>
+
+                    <details class="dropdown">
+                        <summary class="dropdown-toggle">Right-aligned</summary>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        </ul>
+                    </details>
+                </div>
+            </section>
+
             <!-- ========== BREADCRUMB ========== -->
             <section class="doc-section">
                 <h2>Breadcrumbs</h2>
