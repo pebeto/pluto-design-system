@@ -1,9 +1,7 @@
 # Pluto Design System
+<img src="https://raw.githubusercontent.com/gist/fonsp/9a36c183e2cad7c8fc30290ec95eb104/raw/ca3a38a61f95cd58d79d00b663a3c114d21e284e/cute.svg">
 
-A general-purpose CSS framework — Bootstrap-shaped surface (`.btn`, `.card`,
-`.alert`, `.row` / `.col-md-6`, utilities) — built with the visual language of
-[Pluto.jl](https://plutojl.org/): Vollkorn for headings, Alegreya Sans for
-body, JuliaMono for code, soft warm pastels for the semantic palette.
+A general-purpose CSS framework — Bootstrap-shaped surface (`.btn`, `.card`, `.alert`, `.row` / `.col-md-6`, utilities) — built with the visual language of [Pluto.jl](https://plutojl.org/): Vollkorn for headings, Alegreya Sans for body, JuliaMono for code, soft warm pastels for the semantic palette.
 
 ```html
 <link rel="stylesheet" href="design_system/pluto.css" />
@@ -33,14 +31,9 @@ Open `demo/index.html` in a browser to see every component.
 ## Why use it
 
 - **One file**, no build step. CDN fonts, vanilla CSS.
-- **Bootstrap-shaped surface** — if you've used Bootstrap, you already know
-  the class names (`.btn`, `.btn-primary`, `.card`, `.row`, `.col-md-6`,
-  `.alert-danger`, `.form-control`, `.text-center`, `.mt-3`, …).
-- **Pluto's aesthetic** — Vollkorn serif headings with the signature h1/h2
-  underline, soft pastel admonitions, JuliaMono code blocks, warm cream
-  surfaces.
-- **Light + dark** — automatic via `prefers-color-scheme`, manual via
-  `<html data-pluto-theme="dark">`.
+- **Bootstrap-shaped surface** — if you've used Bootstrap, you already know the class names (`.btn`, `.btn-primary`, `.card`, `.row`, `.col-md-6`, `.alert-danger`, `.form-control`, `.text-center`, `.mt-3`, …).
+- **Pluto's aesthetic** — Vollkorn serif headings with the signature h1/h2 underline, soft pastel admonitions, JuliaMono code blocks, warm cream surfaces.
+- **Light + dark** — automatic via `prefers-color-scheme`, manual via `<html data-pluto-theme="dark">`.
 - **CSS variables for everything** — re-skin without editing the source.
 
 ## What's in the box
@@ -60,8 +53,7 @@ design_system/
     └── index.html            # showcase
 ```
 
-You can either import `pluto.css` (which `@imports` everything) or pick the
-parts you need:
+You can either import `pluto.css` (which `@imports` everything) or pick the parts you need:
 
 ```html
 <!-- Just what I need -->
@@ -84,8 +76,7 @@ parts you need:
 
 ### Grid
 
-12-column flex grid. Breakpoints: **sm** 576px, **md** 768px, **lg** 992px,
-**xl** 1200px.
+12-column flex grid. Breakpoints: **sm** 576px, **md** 768px, **lg** 992px, **xl** 1200px.
 
 ```html
 <div class="row gy-3">
@@ -116,8 +107,7 @@ Element styling is automatic — no class needed.
 
 ## Components
 
-All components are vanilla HTML — no JS required (except the modal toggle in
-the demo). Variants follow the Bootstrap pattern: `.btn-primary`, `.alert-danger`, etc.
+All components are vanilla HTML — no JS required (except the modal toggle in the demo). Variants follow the Bootstrap pattern: `.btn-primary`, `.alert-danger`, etc.
 
 | Component        | Class                                                                                                                      |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------- |
@@ -146,9 +136,7 @@ the demo). Variants follow the Bootstrap pattern: `.btn-primary`, `.alert-danger
 
 ### PlutoUI widgets
 
-A second tier of components ported from
-[PlutoUI.jl](https://github.com/JuliaPluto/PlutoUI.jl). They are general-purpose
-web components — the Julia-specific bond plumbing is gone.
+A second tier of components ported from [PlutoUI.jl](https://github.com/JuliaPluto/PlutoUI.jl). They are general-purpose web components — the Julia-specific bond plumbing is gone.
 
 | Component         | Class                                                                                          |
 | ----------------- | ---------------------------------------------------------------------------------------------- |
@@ -161,15 +149,13 @@ web components — the Julia-specific bond plumbing is gone.
 | Wide cell        | `.layout-wide`                                                                                  |
 | Layout helpers    | `.layout-hbox`, `.layout-vbox`, `.layout-grid`                                                 |
 
-\* The `code-cell` family is the one Pluto-specific component — opt in to it
-when you actually want the notebook look.
+\* The `code-cell` family is the one Pluto-specific component — opt in to it when you actually want the notebook look.
 
 ## Utilities
 
 Bootstrap-style atomic helpers, scoped to the framework's spacing scale.
 
-**Spacing scale**: `0` (0), `1` (.25rem), `2` (.5rem), `3` (1rem),
-`4` (1.5rem), `5` (3rem).
+**Spacing scale**: `0` (0), `1` (.25rem), `2` (.5rem), `3` (1rem), `4` (1.5rem), `5` (3rem).
 
 | Group        | Classes                                                                                       |
 | ------------ | --------------------------------------------------------------------------------------------- |
@@ -200,8 +186,7 @@ Bootstrap-style atomic helpers, scoped to the framework's spacing scale.
 
 ### Responsive variants
 
-Layout-sensitive utilities have **breakpoint-suffixed** versions —
-pattern: `.{utility}-{bp}-{value}` activates at `min-width: bp`.
+Layout-sensitive utilities have **breakpoint-suffixed** versions — pattern: `.{utility}-{bp}-{value}` activates at `min-width: bp`.
 
 Breakpoints: `sm` 576px, `md` 768px, `lg` 992px, `xl` 1200px.
 
@@ -226,8 +211,7 @@ Example:
 
 ### Fluid display headings
 
-`.display-1`, `.display-2`, `.display-3` and `.hero` use `clamp()` so they
-shrink on small screens without you needing to set a breakpoint:
+`.display-1`, `.display-2`, `.display-3` and `.hero` use `clamp()` so they shrink on small screens without you needing to set a breakpoint:
 
 ```css
 .display-1  { font-size: clamp(2.5rem, 5vw + 1.5rem, 4.5rem); }
@@ -240,8 +224,7 @@ shrink on small screens without you needing to set a breakpoint:
 
 ### Light / dark
 
-Light is the default. Dark applies automatically with
-`prefers-color-scheme: dark`. Force a theme:
+Light is the default. Dark applies automatically with `prefers-color-scheme: dark`. Force a theme:
 
 ```html
 <html data-pluto-theme="dark">  <!-- or "light" -->
@@ -290,12 +273,8 @@ All design values are CSS variables. Override on `:root` to rebrand:
 
 ## Browser support
 
-Modern evergreen browsers — anything that supports CSS custom properties,
-`oklch()`, and logical properties (`margin-inline`, etc.). That means
-Chrome/Edge 111+, Safari 16.4+, Firefox 113+.
+Modern evergreen browsers — anything that supports CSS custom properties, `oklch()`, and logical properties (`margin-inline`, etc.). That means Chrome/Edge 111+, Safari 16.4+, Firefox 113+.
 
 ## License
 
-MIT — same as Pluto.jl. Visual design and tokens come from Pluto's
-frontend stylesheet; this directory just repackages them as a generic
-framework.
+MIT — same as Pluto.jl. Visual design and tokens come from Pluto's frontend stylesheet; this directory just repackages them as a generic framework.
