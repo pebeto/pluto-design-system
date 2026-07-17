@@ -3,7 +3,24 @@
  *
  * Loaded straight from jsdelivr / fontsource (matches Pluto's own fonts).
  * If you self-host, just rewrite these URLs.
+ *
+ * CSS requires every @import to precede all other rules, so the
+ * fontsource imports come first, then the local @font-face blocks.
  * ===================================================================== */
+
+/* Alegreya Sans — used for body text */
+@import url("https://cdn.jsdelivr.net/npm/@fontsource/alegreya-sans@5.0.12/400.css");
+@import url("https://cdn.jsdelivr.net/npm/@fontsource/alegreya-sans@5.0.12/400-italic.css");
+@import url("https://cdn.jsdelivr.net/npm/@fontsource/alegreya-sans@5.0.12/500.css");
+@import url("https://cdn.jsdelivr.net/npm/@fontsource/alegreya-sans@5.0.12/700.css");
+
+/* Roboto Mono — used for UI labels */
+@import url("https://cdn.jsdelivr.net/npm/@fontsource/roboto-mono@4.4.5/400.css");
+@import url("https://cdn.jsdelivr.net/npm/@fontsource/roboto-mono@4.4.5/500.css");
+@import url("https://cdn.jsdelivr.net/npm/@fontsource/roboto-mono@4.4.5/700.css");
+
+/* Inter — used for chrome/UI */
+@import url("https://cdn.jsdelivr.net/npm/inter-ui@3.19.3/inter-latin.css");
 
 /* Vollkorn — used for headings */
 @font-face {
@@ -33,17 +50,6 @@
     font-weight: 700;
 }
 
-/* Alegreya Sans — used for body text */
-@import url("https://cdn.jsdelivr.net/npm/@fontsource/alegreya-sans@5.0.12/400.css");
-@import url("https://cdn.jsdelivr.net/npm/@fontsource/alegreya-sans@5.0.12/400-italic.css");
-@import url("https://cdn.jsdelivr.net/npm/@fontsource/alegreya-sans@5.0.12/500.css");
-@import url("https://cdn.jsdelivr.net/npm/@fontsource/alegreya-sans@5.0.12/700.css");
-
-/* Roboto Mono — used for UI labels */
-@import url("https://cdn.jsdelivr.net/npm/@fontsource/roboto-mono@4.4.5/400.css");
-@import url("https://cdn.jsdelivr.net/npm/@fontsource/roboto-mono@4.4.5/500.css");
-@import url("https://cdn.jsdelivr.net/npm/@fontsource/roboto-mono@4.4.5/700.css");
-
 /* JuliaMono — used for code */
 @font-face {
     font-family: JuliaMono;
@@ -71,6 +77,3 @@
     font-display: swap;
     font-weight: 700;
 }
-
-/* Inter — used for chrome/UI */
-@import url("https://cdn.jsdelivr.net/npm/inter-ui@3.19.3/inter-latin.css");

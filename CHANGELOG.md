@@ -1,0 +1,49 @@
+# Changelog
+
+All notable changes to this project are documented in this file.
+
+The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+## [1.0.0] - 2026-07-17
+
+First tagged release. The framework ships as an npm package with a versioned,
+minified bundle.
+
+### Added
+
+- `package.json` with a `style` field and an `exports` map, so the framework
+  installs from npm and resolves both the source (`pluto-design-system`) and the
+  minified build (`pluto-design-system/min`).
+- Build pipeline (PostCSS: `postcss-import`, `autoprefixer`, `cssnano`) that
+  inlines the local `@import` chain and writes `dist/pluto.min.css`. The source
+  drops from 131 KB to 87 KB.
+- `browserslist` targeting Chrome/Edge 111+, Safari 16.4+, Firefox 113+, which
+  drives autoprefixing and minification.
+- CDN usage via jsDelivr and unpkg, documented in the README.
+- This changelog.
+
+### Fixed
+
+- Fontsource `@import` rules (Alegreya Sans, Roboto Mono, Inter) now precede the
+  `@font-face` blocks in `styles/fonts.css`. A browser ignores any `@import`
+  placed after other rules, so body text had fallen back to a system sans
+  instead of rendering Alegreya Sans.
+
+### Baseline
+
+The `1.0.0` surface carried over from the pre-versioned framework:
+
+- Design tokens under the `--pluto-*` namespace: color palette, semantic slots,
+  type, spacing, radius, shadow, z-index, motion.
+- Light and dark themes, automatic via `prefers-color-scheme` and manual via
+  `data-pluto-theme`.
+- A 12-column responsive grid with `sm`/`md`/`lg`/`xl` breakpoints.
+- Around 40 components, including the Pluto signatures: code cells, admonitions,
+  table of contents, and the layout aside.
+- A single-file bundle (`pluto.css`) plus per-layer stylesheets under `styles/`.
+
+[Unreleased]: https://github.com/pebeto/pluto-design-system/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/pebeto/pluto-design-system/releases/tag/v1.0.0

@@ -1,0 +1,58 @@
+{
+  "name": "pluto-design-system",
+  "version": "1.0.0",
+  "description": "A general-purpose CSS framework with a Bootstrap-shaped surface, dressed in the Pluto.jl notebook aesthetic: Vollkorn headings, Alegreya Sans body, JuliaMono code, warm pastel palette.",
+  "license": "MIT",
+  "author": "Jose Esparza",
+  "homepage": "https://www.joseesparza.me/pluto-design-system/demo/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pebeto/pluto-design-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pebeto/pluto-design-system/issues"
+  },
+  "keywords": [
+    "css",
+    "css-framework",
+    "design-system",
+    "pluto",
+    "pluto.jl",
+    "julia",
+    "dark-mode",
+    "design-tokens"
+  ],
+  "style": "pluto.css",
+  "exports": {
+    ".": "./pluto.css",
+    "./min": "./dist/pluto.min.css",
+    "./styles/*": "./styles/*"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "files": [
+    "pluto.css",
+    "styles",
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "postcss pluto.css -o dist/pluto.min.css",
+    "prepublishOnly": "npm run build"
+  },
+  "browserslist": [
+    "Chrome >= 111",
+    "Edge >= 111",
+    "Safari >= 16.4",
+    "Firefox >= 113"
+  ],
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "cssnano": "^7.0.6",
+    "postcss": "^8.4.49",
+    "postcss-cli": "^11.0.0",
+    "postcss-import": "^16.1.0"
+  }
+}

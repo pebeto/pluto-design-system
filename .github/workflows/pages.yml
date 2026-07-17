@@ -22,6 +22,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
       - name: Verify sources
         run: |
           set -euo pipefail
@@ -32,15 +37,23 @@ jobs:
             test -f "$f" || { echo "Missing imported CSS: $f"; exit 1; }
           done
 
+      - name: Build minified bundle
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run build
+          test -s dist/pluto.min.css
+
       - name: Assemble site
         run: |
           set -euo pipefail
-          rm -rf dist
-          mkdir -p dist
-          cp pluto.css dist/
-          cp -r styles dist/
-          cp -r demo dist/
-          cat > dist/index.html <<'HTML'
+          rm -rf _site
+          mkdir -p _site
+          cp pluto.css _site/
+          cp -r styles _site/
+          cp -r dist _site/
+          cp -r demo _site/
+          cat > _site/index.html <<'HTML'
           <!doctype html>
           <html lang="en">
             <head>
@@ -57,7 +70,7 @@ jobs:
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: _site
 
   deploy:
     needs: build

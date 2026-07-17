@@ -28,6 +28,42 @@ Open `demo/index.html` in a browser to see every component.
 
 ---
 
+## Install
+
+Pick whichever path fits your setup.
+
+**CDN (no build step).** Point a `<link>` at jsDelivr or unpkg, and pin a major version so a later release never breaks your page:
+
+```html
+<!-- jsDelivr -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pluto-design-system@1/dist/pluto.min.css" />
+
+<!-- unpkg -->
+<link rel="stylesheet" href="https://unpkg.com/pluto-design-system@1/dist/pluto.min.css" />
+```
+
+**npm.** Install the package, then link the file or import it through your bundler:
+
+```bash
+npm install pluto-design-system
+```
+
+```html
+<link rel="stylesheet" href="node_modules/pluto-design-system/dist/pluto.min.css" />
+```
+
+```css
+/* Through a bundler (Vite, webpack, Parcel). The export map resolves both: */
+@import "pluto-design-system";       /* source; expands the @import chain */
+@import "pluto-design-system/min";   /* pre-built minified bundle          */
+```
+
+**Download.** Grab `pluto.css` (or `dist/pluto.min.css`) from a [release](https://github.com/pebeto/pluto-design-system/releases) and drop it in.
+
+The CDN and npm paths serve `1.0.0` once it is published to npm.
+
+---
+
 ## Why use it
 
 - **One file**, no build step. CDN fonts, vanilla CSS.
@@ -39,8 +75,8 @@ Open `demo/index.html` in a browser to see every component.
 ## What's in the box
 
 ```
-design_system/
-├── pluto.css                 # single bundle entry point
+pluto-design-system/
+├── pluto.css                 # single bundle entry point (@imports styles/*)
 ├── styles/
 │   ├── tokens.css            # CSS variables: palette, scales, semantic slots
 │   ├── fonts.css             # @font-face — Vollkorn, Alegreya, JuliaMono, …
@@ -49,8 +85,13 @@ design_system/
 │   ├── grid.css              # .container, .row, .col-{N,sm,md,lg,xl}-{1..12}
 │   ├── components.css        # buttons, alerts, cards, forms, navbar, …
 │   └── utilities.css         # spacing, display, flex, text, color, …
-└── demo/
-    └── index.html            # showcase
+├── dist/
+│   └── pluto.min.css         # built bundle (npm run build; git-ignored)
+├── demo/
+│   └── index.html            # showcase
+├── package.json              # npm metadata, exports, build scripts
+├── postcss.config.js         # build pipeline
+└── CHANGELOG.md              # release history
 ```
 
 You can either import `pluto.css` (which `@imports` everything) or pick the parts you need:
@@ -273,7 +314,30 @@ All design values are CSS variables. Override on `:root` to rebrand:
 
 ## Browser support
 
-Modern evergreen browsers — anything that supports CSS custom properties, `oklch()`, and logical properties (`margin-inline`, etc.). That means Chrome/Edge 111+, Safari 16.4+, Firefox 113+.
+Modern evergreen browsers — anything that supports CSS custom properties, `oklch()`, and logical properties (`margin-inline`, etc.). That means Chrome/Edge 111+, Safari 16.4+, Firefox 113+. The build autoprefixes and minifies against this same `browserslist`.
+
+## Building from source
+
+```bash
+npm install      # dev dependencies (PostCSS toolchain)
+npm run build    # writes dist/pluto.min.css
+```
+
+The build inlines the local `@import` chain, autoprefixes against the `browserslist` in `package.json`, and minifies. Edit a file under `styles/`, rerun `npm run build`, and commit. CI runs the same build before it deploys the demo.
+
+## Versioning & releases
+
+The project follows [Semantic Versioning](https://semver.org/). A token or class removal or rename lands in a major bump, a new component or utility in a minor, a fix in a patch. Every release gets an entry in [`CHANGELOG.md`](CHANGELOG.md).
+
+Maintainers cut a release with:
+
+```bash
+npm version <major|minor|patch>   # bumps package.json and tags the commit
+git push --follow-tags
+npm publish                       # prepublishOnly runs the build first
+```
+
+`prepublishOnly` runs `npm run build`, so the published package always carries a fresh `dist/pluto.min.css`.
 
 ## License
 
