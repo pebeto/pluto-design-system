@@ -1,6 +1,6 @@
 {
   "name": "pluto-design-system",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A general-purpose CSS framework with a Bootstrap-shaped surface, dressed in the Pluto.jl notebook aesthetic: Vollkorn headings, Alegreya Sans body, JuliaMono code, warm pastel palette.",
   "license": "MIT",
   "author": "Jose Esparza",
