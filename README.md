@@ -310,7 +310,30 @@ All design values are CSS variables. Override on `:root` to rebrand:
 | Border / link      | `--pluto-border`, `--pluto-border-strong`, `--pluto-link`, `--pluto-link-underline`                     |
 | Code               | `--pluto-code-bg`, `--pluto-code-text`                                                                  |
 | Semantic           | `--pluto-{primary,success,info,warning,danger,neutral,light,dark}{,-soft,-strong,-text}`                |
+| Solid surfaces     | `--pluto-{primary,success,info,warning,danger}-solid{,-hover}` — AA-safe fills behind label text         |
 | Focus              | `--pluto-focus-ring`                                                                                    |
+
+## Accessibility
+
+The framework targets WCAG 2.1 AA out of the box.
+
+**Color contrast.** Filled surfaces — solid buttons, badges, alert titles, active items, progress fills — draw their background from the `-solid` token shades, which clear AA (≥ 4.5:1) against their label text in both light and dark. The soft pastels stay for tints (alert bodies, `-soft` backgrounds), where dark body text already passes. Rebrand by overriding a `-solid` token, and keep it dark enough for the text it carries.
+
+**Focus.** Every interactive element shows a `:focus-visible` ring driven by `--pluto-focus-ring`. Text inputs, checkboxes, the range thumb, and the switch keep a visible focus indicator even where they swap the browser's default outline for a custom one.
+
+**Reduced motion.** Under `prefers-reduced-motion: reduce`, transitions and the fade/slide entrance animations resolve instantly and smooth scrolling turns off. The loaders (spinner, indeterminate bar) keep moving but slower, because they report that work is still happening.
+
+**Forced colors.** Under `forced-colors: active` (Windows High Contrast), focus rings fall back to a system-colored outline, and the switch gains a border plus a system-colored knob so its on/off state reads from the knob position.
+
+**Keyboard & semantics.** Components are semantic HTML and inherit native keyboard behavior. A few need markup or script from you:
+
+| Component        | What you supply                                                                                          |
+| ---------------- | ------------------------------------------------------------------------------------------------------- |
+| Modal            | Toggle `.show`, set `role="dialog"` + `aria-modal="true"`, and trap focus / handle Esc in script (the demo shows one way). |
+| Tabs / pills     | The classes only style; add `role="tablist"`/`tab`/`tabpanel` and arrow-key movement for the full ARIA pattern. |
+| Dropdown         | Built on `<details>`/`<summary>`, so open/close is keyboard-native.                                       |
+| Alert dismiss    | Give `.alert-dismiss` an `aria-label`.                                                                    |
+| Icon-only button | Add an `aria-label`.                                                                                      |
 
 ## Browser support
 
@@ -329,15 +352,16 @@ The build inlines the local `@import` chain, autoprefixes against the `browsersl
 
 The project follows [Semantic Versioning](https://semver.org/). A token or class removal or rename lands in a major bump, a new component or utility in a minor, a fix in a patch. Every release gets an entry in [`CHANGELOG.md`](CHANGELOG.md).
 
-Maintainers cut a release with:
+Releases publish from CI through npm [Trusted Publishing](https://docs.npmjs.com/trusted-publishers) (OIDC), so no npm token lives in the repo. A maintainer cuts a release by pushing a tag:
 
 ```bash
 npm version <major|minor|patch>   # bumps package.json and tags the commit
-git push --follow-tags
-npm publish                       # prepublishOnly runs the build first
+git push --follow-tags            # the v* tag triggers .github/workflows/publish.yml
 ```
 
-`prepublishOnly` runs `npm run build`, so the published package always carries a fresh `dist/pluto.min.css`.
+The workflow builds the bundle and runs `npm publish` with an OIDC identity. Configure the trusted publisher once on npmjs.com (package → Settings → Trusted Publisher → GitHub Actions, repo `pebeto/pluto-design-system`, workflow `publish.yml`).
+
+The first-ever publish has to be manual, because npm needs the package to exist before it can trust a publisher. Do it once with a security-key 2FA prompt or a granular token, then CI handles every release after that.
 
 ## License
 

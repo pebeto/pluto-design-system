@@ -1,0 +1,66 @@
+/* =====================================================================
+ * Pluto Design System — Accessibility preferences
+ *
+ * Honors user-agent accessibility settings. Loaded last so it overrides
+ * the token defaults and component rules it needs to.
+ *
+ *   - prefers-reduced-motion: drop transitions and entrance animations;
+ *     slow (not freeze) the loaders that signal ongoing work.
+ *   - forced-colors: keep focus and custom-control state visible when the
+ *     OS replaces the palette (Windows High Contrast).
+ * ===================================================================== */
+
+/* ===== REDUCED MOTION ================================================= */
+@media (prefers-reduced-motion: reduce) {
+    /* Every transition and the fade-in / slide-up entrance animations read
+       their duration from these tokens, so zeroing the tokens makes them
+       resolve instantly — no !important, no per-component overrides. */
+    :root {
+        --pluto-transition-fast: 0s;
+        --pluto-transition: 0s;
+        --pluto-transition-slow: 0s;
+    }
+
+    :root {
+        scroll-behavior: auto;
+    }
+
+    /* Loaders signal that work is happening, so they keep moving — just
+       slower, which is the reduced-motion compromise rather than a freeze. */
+    .spinner {
+        animation-duration: 1.5s;
+    }
+    .spinner-dot {
+        animation-duration: 2s;
+    }
+    .progress-indeterminate::after {
+        animation-duration: 3s;
+    }
+}
+
+/* ===== FORCED COLORS (Windows High Contrast) ========================= */
+@media (forced-colors: active) {
+    /* The base :focus-visible ring is a box-shadow, and box-shadow does not
+       paint in forced-colors. The reset pairs it with a transparent outline
+       that the OS forces visible, which covers most elements. These controls
+       trade that outline for a box-shadow of their own, so restore an outline
+       for them here. */
+    .form-control:focus,
+    .form-select:focus,
+    .form-check-input:focus-visible,
+    .range:focus-visible,
+    .switch:focus-visible {
+        outline: 2px solid CanvasText;
+        outline-offset: 1px;
+    }
+
+    /* The switch conveys on/off through background color, which flattens to a
+       system color here. A border plus a system-colored knob keeps the knob
+       position — and therefore the state — legible. */
+    .switch {
+        border: 1px solid CanvasText;
+    }
+    .switch::before {
+        background: CanvasText;
+    }
+}

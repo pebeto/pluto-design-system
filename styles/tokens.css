@@ -239,6 +239,24 @@
     --pluto-dark-strong: var(--pluto-slate-900);
     --pluto-dark-text: white;
 
+    /* Solid on-color surfaces.
+       The base semantic colors are soft pastels — too light to carry white
+       label text at WCAG AA. These `-solid` slots are the deeper shade a filled
+       button, badge, alert title, or active item uses behind its text, paired
+       with the matching `-text` token. They stay fixed across light and dark so
+       the contrast guarantee holds in both. Warning stays light and pairs with
+       dark text; the rest are dark and pair with white. */
+    --pluto-primary-solid: var(--pluto-indigo-600);
+    --pluto-primary-solid-hover: var(--pluto-indigo-700);
+    --pluto-success-solid: var(--pluto-sage-500);
+    --pluto-success-solid-hover: var(--pluto-sage-600);
+    --pluto-info-solid: var(--pluto-sky-500);
+    --pluto-info-solid-hover: var(--pluto-sky-600);
+    --pluto-warning-solid: var(--pluto-sand-300);
+    --pluto-warning-solid-hover: var(--pluto-sand-400);
+    --pluto-danger-solid: var(--pluto-rose-500);
+    --pluto-danger-solid-hover: var(--pluto-rose-600);
+
     /* Focus ring */
     --pluto-focus-ring: 0 0 0 3px var(--pluto-sky-200);
 

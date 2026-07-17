@@ -7,6 +7,27 @@ and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+### Added
+
+- `styles/a11y.css`: honors `prefers-reduced-motion` (drops transitions and
+  entrance animations, slows the loaders) and `forced-colors` (keeps focus and
+  switch state visible in Windows High Contrast).
+- `-solid` and `-solid-hover` semantic tokens for filled surfaces that carry
+  label text.
+- Accessibility section in the README, covering contrast, focus, motion,
+  forced colors, and the keyboard/ARIA a maintainer supplies per component.
+
+### Changed
+
+- Solid buttons, badges, alert titles, active items, and progress fills now use
+  the deeper `-solid` shades. White label text on the soft base pastels measured
+  about 2:1 to 3.9:1; the `-solid` shades clear WCAG AA (4.5:1+) in both themes.
+
+### Fixed
+
+- The warning button hover no longer drops to 3.8:1; it uses a lighter tan that
+  keeps dark text at AA.
+
 ## [1.0.0] - 2026-07-17
 
 First tagged release. The framework ships as an npm package with a versioned,
